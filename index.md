@@ -1,15 +1,15 @@
-## Probability and Bayesian Modeling
+# Probability and Bayesian Modeling
 
 Jim Albert and Monika Hu
 
 
-### General Information:
+## General Information:
 
-CRC Page for Book
-Amazon Page
+- CRC Page for Book
+- Amazon Page
 
 
-### Resources:
+## Resources:
 
-Errata List
-Datasets used in the Case Studies and Exercises
+- Errata List
+- Datasets used in the Case Studies and Exercises
