@@ -13,3 +13,5 @@ Jim Albert and Monika Hu
 
 - Errata List
 - Datasets used in the Case Studies and Exercises
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)
