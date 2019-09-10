@@ -5,7 +5,7 @@ Jim Albert and Monika Hu
 
 ## General Information:
 
-- [CRC Page for Book] (https://www.crcpress.com/Probability-and-Bayesian-Modeling/Albert-Hu/p/book/9781138492561)
+- [CRC Page for Book](https://www.crcpress.com/Probability-and-Bayesian-Modeling/Albert-Hu/p/book/9781138492561)
 - Amazon Page
 
 
