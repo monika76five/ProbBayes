@@ -1,0 +1,46 @@
+Hospital	Borough	Type	Cases	Deaths
+Bronx-Lebanon Hospital Center - Concourse Division	The Bronx	P	209	20
+Jacobi Medical Center	The Bronx	N	92	5
+Lincoln Medical & Mental Health Center	The Bronx	N	133	4
+Montefiore Med Center - Jack D Weiler Hospital of A Einstein College Div	The Bronx	P	336	18
+Montefiore Medical Center - Henry & Lucy Moses Div	The Bronx	P	267	24
+Montefiore Medical Center - Wakefield Hospital	The Bronx	N	62	3
+SBH Health Sysytem	The Bronx	P	112	7
+Brookdale Hospital Medical Center	Brooklyn	P	237	26
+Brooklyn Hospital Center - Downtown Campus	Brooklyn	N	168	19
+Coney Island Hospital	Brooklyn	N	151	11
+Kings County Hospital Center	Brooklyn	N	178	12
+Kingsbrook Jewish Medical Center	Brooklyn	N	128	13
+Maimonides Medical Center	Brooklyn	P	727	46
+Mount Sinai Brooklyn	Brooklyn	N	179	22
+NYU Luteran Medical Center	Brooklyn	P	145	9
+"New York Community Hospital of Brooklyn, Inc"	Brooklyn	N	92	6
+New York Methodist Hospital	Brooklyn	P	402	26
+University Hospital of Brooklyn	Brooklyn	P	190	21
+Woodhull Medical & Mental Health Center	Brooklyn	N	98	6
+Wyckoff Heights Medical Center	Brooklyn	N	149	7
+Bellevue Hospital Center	Manhattan	P	129	4
+Harlem Hospital Center	Manhattan	N	35	1
+Lenox Hill Hospital	Manhattan	P	228	18
+Metropolitan Hospital Center	Manhattan	N	84	7
+Mount Sinai Beth Israel	Manhattan	P	291	24
+Mount Sinai Hospital	Manhattan	P	270	16
+Mount Sinai Roosevelt	Manhattan	N	46	6
+Mount Sinai St. Luke's	Manhattan	P	293	19
+NYU Hospitals Center	Manhattan	P	241	15
+New York Presbyterian Hospital - Allen Hospital	Manhattan	N	105	13
+New York Presbyterian Hospital - Columbia Presbyterian Center	Manhattan	P	353	25
+New York Presbyterian Hospital - New York Weill Cornell Center	Manhattan	P	250	11
+New York-Presbyterian/Lower Manhattan Hospital	Manhattan	N	41	4
+Elmhurst Hospital Center	Queens	P	286	25
+Flushing Hospital Medical Center	Queens	N	56	3
+Forest Hills Hospital	Queens	N	205	25
+Jamaica Hospital Medical Center	Queens	P	523	42
+Long Island Jewish Medical Center	Queens	P	365	19
+Mount Sinai Hospital - Mount Sinai Hospital of Queens	Queens	N	114	8
+New York - Presbyterian/Queens	Queens	P	344	31
+Queens Hospital Center	Queens	N	184	10
+St Johns Episcopal Hospital So Shore	Queens	N	57	5
+Richmond University Medical Center	Staten Island	P	162	11
+Staten Island University Hospital - North	Staten Island	P	464	44
+Staten Island University Hospital - South	Staten Island	N	54	7
