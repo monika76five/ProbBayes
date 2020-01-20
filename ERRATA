@@ -1,22 +1,26 @@
-THE ERRATA LIST - 1/13/20
+THE ERRATA LIST - 1/19/20
 
-1.  Page 124, Table 4.13.  The last two values in the third column should be 22 and 24 (instead of 12 and 14).
+1.  Page 19, line 17.  Should be
 
-2.  Page 124, Exercise 8.  First line is missing.  It should read:  "Box 1 contains four slips numbered 1 through 4 and Box 2 contains five slips numbered 2 through 6.
+P(F union L) = P(F) + P(L) - P(F intersect L)
 
-3.  Page 229, line 7.  Should be "is tedious, however practice with the"
+2.  Page 124, Table 4.13.  The last two values in the third column should be 22 and 24 (instead of 12 and 14).
 
-4.  Page 212, Exercise 13 (b).  The integral identity should be
+3.  Page 124, Exercise 8.  First line is missing.  It should read:  "Box 1 contains four slips numbered 1 through 4 and Box 2 contains five slips numbered 2 through 6.
+
+4.  Page 229, line 7.  Should be "is tedious, however practice with the"
+
+5.  Page 212, Exercise 13 (b).  The integral identity should be
 
 integral_0^infty exp(-a lambda) lambda^b dlambda = b! / a ^{b+1}
 
-5.  Page 214, Exercise 20, part (a), line 1.  Should be:  Write an R function to simulate 10 balls drawn with replacement of the special weighted box.
+6.  Page 214, Exercise 20, part (a), line 1.  Should be:  Write an R function to simulate 10 balls drawn with replacement of the special weighted box.
 
-6.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
+7.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
 
-7.  Page 448.  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  Figure 11.13 should be redrawn using the correct precision values.
+8.  Page 448.  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  Figure 11.13 should be redrawn using the correct precision values.
 
-8.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+9.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)p0 <- 0.40; p1 <- 0.70m <- 20; n <- 50; p <- 0.2z <- sample(0:1, size = m, prob = c(p, 1-p),replace = TRUE)prob <- (z == 0) * p0 + (z == 1) * p1y <- rbinom(m, size = n, prob)
 
