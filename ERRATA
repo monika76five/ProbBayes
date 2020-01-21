@@ -8,19 +8,32 @@ P(F union L) = P(F) + P(L) - P(F intersect L)
 
 3.  Page 124, Exercise 8.  First line is missing.  It should read:  "Box 1 contains four slips numbered 1 through 4 and Box 2 contains five slips numbered 2 through 6.
 
-4.  Page 229, line 7.  Should be "is tedious, however practice with the"
-
-5.  Page 212, Exercise 13 (b).  The integral identity should be
+4.  Page 212, Exercise 13 (b).  The integral identity should be
 
 integral_0^infty exp(-a lambda) lambda^b dlambda = b! / a ^{b+1}
 
-6.  Page 214, Exercise 20, part (a), line 1.  Should be:  Write an R function to simulate 10 balls drawn with replacement from the special weighted box.
+5.  Page 214, Exercise 20, part (a), line 1.  Should be:  Write an R function to simulate 10 balls drawn with replacement from the special weighted box.
 
-7.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
+6.  Page 229, line 7.  Should be "is tedious, however practice with the"
 
-8.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+7.  Page 259, Exercise 11, last line before (a).  Should be "who say Friday."
 
-9.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+8.  Page 263, Exercise 22, part (c), line 2.  Should read "where (1) p is distributed beta(12, 6) and (2) p is distributed beta(6, 12) by a Bayes factor."
+
+9.  Page 301, Exercise 1 part (b).  Should be:  contains mu with probability at least 0.5.
+
+10.  Page 302, Exercise 2 line 6.  Should be: 5, 10, 15, 20, 25, 30, 35.
+
+11.  Page 304, Exercise 8.  In sample script, 
+
+Line 7, it should be "mu <- rnorm(1, mu_n, sigma_n)"
+line 8, it should be "test_function(rnorm(n, mu, sigma))"
+
+12.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
+
+13.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+
+14.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)
 p0 <- 0.40; p1 <- 0.70
