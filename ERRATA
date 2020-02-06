@@ -31,9 +31,11 @@ line 8, it should be "test_function(rnorm(n, mu, sigma))"
 
 12.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
 
-13.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+13.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
 
-14.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+14.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+
+15.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)
 p0 <- 0.40; p1 <- 0.70
