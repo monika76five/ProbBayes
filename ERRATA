@@ -1,4 +1,4 @@
-THE ERRATA LIST - 4/2/2020
+THE ERRATA LIST - 4/9/2020
 
 1.  Page 19, line 17.  Should be
 
@@ -22,50 +22,52 @@ nPr = n x (n - 1) x ... x (n - r + 1)
 
 9.  Page 191, line 6.  f Y mid X should be f Y | X
 
-10.  Page 212, Exercise 13 (b).  The integral identity should be
+10.  Page 209, Exercise 4, line4.  Should be "you sample 2 balls without replacement from the box"
+
+11.  Page 212, Exercise 13 (b).  The integral identity should be
 
 integral_0^infty exp(-a lambda) lambda^b dlambda = b! / a ^{b+1}
 
-11.  Page 214, Exercise 20, part (a), line 1.  Should be:  Write an R function to simulate 10 balls drawn with replacement from the special weighted box.
+12.  Page 214, Exercise 20, part (a), line 1.  Should be:  Write an R function to simulate 10 balls drawn with replacement from the special weighted box.
 
-12.  Page 229, line 7.  Should be "is tedious, however practice with the"
+13.  Page 229, line 7.  Should be "is tedious, however practice with the"
 
-13.  Page 259, Exercise 11, last line before (a).  Should be "who say Friday."
+14.  Page 259, Exercise 11, last line before (a).  Should be "who say Friday."
 
-14.  Page 263, Exercise 22, part (c), line 2.  Should read "where (1) p is distributed beta(12, 6) and (2) p is distributed beta(6, 12) by a Bayes factor."
+15.  Page 263, Exercise 22, part (c), line 2.  Should read "where (1) p is distributed beta(12, 6) and (2) p is distributed beta(6, 12) by a Bayes factor."
 
-15.  Page 301, Exercise 1 part (b).  Should be:  contains mu with probability at least 0.5.
+16.  Page 301, Exercise 1 part (b).  Should be:  contains mu with probability at least 0.5.
 
-16.  Page 302, Exercise 2 line 6.  Should be: 5, 10, 15, 20, 25, 30, 35.
+17.  Page 302, Exercise 2 line 6.  Should be: 5, 10, 15, 20, 25, 30, 35.
 
-17.  Page 304, Exercise 8.  In sample script, 
+18.  Page 304, Exercise 8.  In sample script, 
 
 Line 7, it should be "mu <- rnorm(1, mu_n, sigma_n)"
 line 8, it should be "test_function(rnorm(n, mu, sigma))"
 
-18.  Page 314, line 11 from bottom.  Replace "Since the the main" by "Since the main"
+19.  Page 314, line 11 from bottom.  Replace "Since the the main" by "Since the main"
 
-19.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
+20.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
 
-20.  Page 393, Exercise 1, line 1:  n_j should be n_i.
+21.  Page 393, Exercise 1, line 1:  n_j should be n_i.
 
-21.  Page 393, Exercise 1, line 2: \bar{y}_j should be \bar{y}_i.
+22.  Page 393, Exercise 1, line 2: \bar{y}_j should be \bar{y}_i.
 
-22.  Page 394, Exercise 2 first line of the model: should be Normal(\mu_i, \sigma / \sqrt{n_i}), i = 1, …, 6 
+23.  Page 394, Exercise 2 first line of the model: should be Normal(\mu_i, \sigma / \sqrt{n_i}), i = 1, …, 6 
 
-23.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
+24.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
 
-24.  Page 429, line 11 from bottom.  Should be "measure of the linear"
+25.  Page 429, line 11 from bottom.  Should be "measure of the linear"
 
-25.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+26.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
 
-26.  Page 439, Exercise 4(c): should be “From the interval found in part (b)”.
+27.  Page 439, Exercise 4(c): should be “From the interval found in part (b)”.
 
-27.  Page 452, line 6.  Replace "the the" with "that the".
+28.  Page 452, line 6.  Replace "the the" with "that the".
 
-28.  Page 468, line 13.  Replace "the the" with "that the".
+29.  Page 468, line 13.  Replace "the the" with "that the".
 
-29.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+30.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)
 p0 <- 0.40; p1 <- 0.70
