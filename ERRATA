@@ -1,4 +1,4 @@
-THE ERRATA LIST - 4/9/2020
+THE ERRATA LIST - 6/30/2020
 
 1.  Page 19, line 17.  Should be
 
@@ -65,9 +65,11 @@ line 8, it should be "test_function(rnorm(n, mu, sigma))"
 
 28.  Page 452, line 6.  Replace "the the" with "that the".
 
-29.  Page 468, line 13.  Replace "the the" with "that the".
+29.  Page 465.  Line 19.  Should be "the quadratic model is best"
 
-30.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+30.  Page 468, line 13.  Replace "the the" with "that the".
+
+31.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)
 p0 <- 0.40; p1 <- 0.70
