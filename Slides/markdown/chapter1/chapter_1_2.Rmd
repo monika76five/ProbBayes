@@ -16,7 +16,7 @@ fontsize: 12pt
 - Then the probability of each outcome will be
 
 \begin{equation}
-Prob({\rm Outcome}) = \frac{1}{{\rm Number} \, {\rm of} \, {\rm outcomes}}.
+Prob({\rm Outcome}) = \frac{1}{{\rm Number of outcomes}}.
 \end{equation}
  
 ## Balls in Bowl Example
