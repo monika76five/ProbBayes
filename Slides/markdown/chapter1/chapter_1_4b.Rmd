@@ -1,0 +1,61 @@
+---
+title: Chapter 1.4b Subjective Viewpoint
+author: Jim Albert and Monika Hu
+date: Chapter 1 Probability, A Measure of Uncertainty
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Measuring probabilities subjectively
+
+- Although one is used to expressing one's opinions about uncertain events, using words like probably, rare or maybe, one typically  is not used to assigning probabilities to quantify one's beliefs about these events.  
+
+- To make any kind of measurement, one needs a tool like a scale or ruler.   We use a special tool, called a calibration experiment that will help to determine one's subjective probabilities.
+
+## A calibration experiment
+
+- Consider the event $W$:  "a woman will be President of the United States in the next 20 years".  Here is a simple procedure that will help in measuring a student's probability of this event.
+
+- Consider the following calibration experiment -- this is an experiment where the probabilities of outcomes are clear.  One has a collection of balls, 5 red and 5 white in a box and one ball is selected at random.  
+  
+- Let $B$ denote the event that the student observes a red ball.  Since each of the ten balls is equally likely to be selected, we think he would agree that $Prob(B) = 5/10 = 0.5$.
+
+## Consider the following two bets:
+
+- BET 1 -- If $W$ occurs (a women is president in the next 20 years), the student wins $100.  Otherwise, the student wins nothing. 
+
+- BET 2 -- If $B$ occurs (a red ball is observed in the 5 red and 5 black balls experiment), the student wins  $100.  Otherwise, the student wins nothing.
+
+- Based on the bet that the student prefers, one can determine an interval that contains his $Prob(W)$:
+
+## Which bet is preferred?
+
+1. If the student prefers BET 1, then his $Prob(W)$ must be larger than $Prob(B) = 0.5$ -- that is, his $Prob(W)$ must fall between 0.5 and 1.
+ 
+2. If the student prefers BET 2, then his $Prob(W)$ must be smaller than $Prob(B) = 0.5$ -- that is, his probability of W must fall between 0 and 0.5.
+
+## Continue comparing bets
+ 
+- What the student does  next depends on his answer to the question to the previous bet.
+
+- If his $Prob(W)$ falls in the interval (0, 0.5), then consider the "balls in box" experiment  with 2 red and 8 white balls and one are interested in the probability of choosing a red ball.
+ 
+- If instead his $Prob(W)$ falls in the interval (0.5, 1), then consider the "balls in box" experiment  with 8 red and 2 white balls and he is interested in the probability of choosing a red ball.
+
+## Continue comparing bets
+ 
+Let's suppose that the student believes $Prob(W)$ falls in the interval (0.5, 1).  Then he would make a judgment between the two bets
+
+- BET 1 -- If $W$ occurs (a women is president in the next 20 years), he wins $100.  Otherwise, he wins nothing. 
+
+- BET 2 -- If $B$ occurs (observe a red ball with a box with 8 red and 2 white balls), he wins $100.  Otherwise, he wins nothing.
+
+The student decides to prefer BET 2, which means that his probability $Prob(W)$ is smaller than 0.8.  Now the student  believes that $Prob(W)$ falls between 0.5 and 0.8.
+ 
+## Calibration experiment in practice
+
+- In practice, the student will continue to compare BET 1 and BET 2, where the box in Bet 2 has a different number of red and white balls.  
+
+- By a number of comparisons of this type, he will get an accurate measurement at his probability of $W$.
+

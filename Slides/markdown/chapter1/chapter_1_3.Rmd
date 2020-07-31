@@ -1,0 +1,82 @@
+---
+title: Chapter 1.3 Frequency Viewpoint
+author: Jim Albert and Monika Hu
+date: Chapter 1 Probability, A Measure of Uncertainty
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Introduction
+
+- The classical view of probability is helpful  when we can construct a list of outcomes of the experiment in such a way where the outcomes are equally likely.
+
+- The frequency interpretation of probability can be used in cases where outcomes are equally likely or not equally likely.
+
+- This view of probability is appropriate when one is able to repeat the random experiment many times under the same conditions.
+
+## Getting out of jail in Monopoly
+
+- Suppose someone is playing the popular game Monopoly and she lands in jail.  
+
+- To get out of jail on the next turn, she either pays $50 or roll "doubles" when she rolls two fair dice.  
+
+- What is the probability of rolling doubles when she rolls two dice?
+
+## Applying the frequency viewpoint
+
+- The frequency notion can be applied to approximate the probability of rolling doubles.  
+
+- Imagine rolling two dice many times under similar conditions.  
+
+- Each time two dice are rolled, one observes if she get doubles or not.  
+
+- The probability of doubles is approximated by the relative frequency\index{relative frequency}
+
+$$
+Prob({\rm doubles}) \approx \frac{{\rm Number} \, {\rm of} \, {\rm doubles}}{{\rm Number} \, {\rm of} \, {\rm experiments}}.
+$$
+
+## Rolling two dice using R
+
+- The ```two_rolls()```\index{two_rolls()} function simulates rolls of a pair of dice and the ```replicate()```\index{replicate()} function repeats this process 1000 times and stores the outcomes in the variable ```many_rolls```.
+
+```{r}
+two_rolls <- function(){
+  sample(1:6, size = 2, replace = TRUE)
+}
+many_rolls <- replicate(1000, two_rolls())
+```
+
+## Results of 10 experiments
+
+- The results of the first 10 experiments are shown below.  For each experiment, one records if there is a match (YES) or no match (NO) in the two numbers that are rolled. 
+
+```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/10_2dicerolls.png")
+```
+ 
+## After 50 rolls ..
+
+- In the first 50 rolls we observed a match 7 times, so 
+
+- $Prob(match) \approx$ 7/50 = 0.14.
+
+
+## After 10,000 rolls ...
+
+- Let's now roll the two dice 10,000 times with R -- this time, 1662 matches are observed, so 
+
+$$Prob(match) \approx 1662/10000 = 0.1662.$$
+
+- Is 0.1662 the actual probability of getting doubles?  
+
+- No, it is still only an approximation to the actual probability. However, as one continues to roll dice, the relative frequency will approach the actual probability of 1/6.
+
+## Obtaining the exact probability
+
+- In this example, one can show that are $6 \times 6 = 36$ equally likely ways of rolling two distinguishable dice 
+
+- There are exactly six ways of rolling doubles. 
+
+- So using the classical viewpoint, the probability of doubles is $6/36 =1/6$.

@@ -1,0 +1,98 @@
+---
+title: Chapter 1.5 Sample Space
+author: Jim Albert and Monika Hu
+date: Chapter 1 Probability, A Measure of Uncertainty
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## The Sample Space
+
+- A sample space lists all possible outcomes of a random experiment. 
+
+- There are different ways to write down the sample space, depending on how one thinks about outcomes.   
+
+- Let's illustrate the variety of sample spaces by the simple experiment "roll two fair dice."
+
+## Rolling Two Dice
+
+- Each die is the usual six-sided object that we are familiar with, with the numbers 1, 2, 3, 4, 5, 6 on each side.  
+
+- One is imagining that each die is constructed such that the six possible numbers are equally likely to come up when rolled.
+
+- What can happen when you roll two dice?  The collection of all outcomes that are possible is the sample space.  
+
+## Sum of the Rolls
+
+- Suppose one is interested in the sum of the numbers on the two dice. What are the possible sums?  
+
+- So the sample space, denoted by $S$, would be
+
+$S$ = \{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\}.
+
+
+## Record Roll on Each Die
+
+- Suppose instead that one wishes to record the rolls on each of the two dice.  One possible outcome would be 
+
+(4 on one die, 3 on the other die) or (4, 3).  
+
+- There are twenty-one possibilities:
+
+| |  | 
+----|----|----|----
+(1, 1) | (1, 2) | (1, 3) | (1, 4)
+(1, 5) | (1, 6) | (2, 2) | (2, 3)
+(2, 4) | (2, 5) | (2, 6) | (3, 3)
+(3, 4) | (3, 5) | (3, 6) | (4, 4)
+(4, 5) | (4, 6) | (5, 5) | (5, 6)
+(6, 6) | | |
+
+
+## Distinguish the Dice
+
+- What if we distinguished the two dice -- perhaps one die is red and one die is white.
+
+- One are considering all of the possible rolls of both dice.  
+
+- One way of representing possible rolls of two distinct dice is by a tree diagram shown in the Figure on the next slide.  
+
+## Tree Diagram
+
+```{r,  echo = FALSE, out.width = 130}
+knitr::include_graphics("figures/twodice.png")
+```
+
+## Other Ways of Showing Sample Space
+
+- Write down an outcome by the ordered pair
+
+(roll on white die, roll on red die).
+
+Then table shows the possible outcomes.
+
+  |  |   |  |  |
+----|----|----|----|----|----
+(1, 1) | (1, 2) | (1, 3) | (1, 4) | (1, 5) | (1, 6)
+(2, 1) | (2, 2) | (2, 3) | (2, 4) | (2, 5) | (2, 6) 
+(3, 1) | (3, 2) | (3, 3) | (3, 4) | (3, 5) | (3, 6)
+(4, 1) | (4, 2) | (4, 3) | (4, 4) | (4, 5) | (4, 6) 
+(5, 1) | (5, 2) | (5, 3) | (5, 4) | (5, 5) | (5, 6)
+(6, 1) | (6, 2) | (6, 3) | (6, 4) | (6, 5) | (6, 6)
+
+## Three ways of representing the sample space
+
+- These representations differ by how one records the outcome of rolling two dice.  
+
+- One either (1) records the sum of the two dice, (2) records the individual rolls, not distinguishing the two dice, or (3) records the individual rolls, distinguishing the two dice.
+
+## Which sample space is best?
+
+- All of the sample spaces shown above are correct.  Each sample space represents all possible outcomes of the experiment of rolling two dice.
+
+- But some sample spaces are more convenient than other sample spaces when one wishes to assign probabilities.
+
+- For rolling two fair dice, the sample space with distinguishable dice is desirable from the viewpoint of computing probabilities since the outcomes are equally likely.
+
+- In writing down a sample space, one uses whatever method one likes.  The important thing is that one has displayed all of the possible outcomes in $S$.

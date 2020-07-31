@@ -1,0 +1,59 @@
+---
+title: Chapter 11.3 A Simple Linear Regression Model
+author: Jim Albert and Monika Hu
+date: Chapter 11 Simple Linear Regression
+output: 
+    beamer_presentation: default
+    logo: ProbBayes_cover.jpg
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(runjags)
+library(coda)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## The linear regression model framework
+
+- Assume the response variable, the price of a house sale 
+    - a continuous variable 
+    - distributed as a normal random variable
+    
+- Specifically, the price $Y_i$ for house $i$, is normally distributed with mean $\mu_i$ and standard deviation $\sigma$.
+\begin{equation}
+Y_i \mid \mu_i, \sigma \overset{ind}{\sim} \textrm{Normal}(\mu_i, \sigma)
+\end{equation}
+    - $i = 1, \cdots, n$, where $n = 24$ is the number of homes in the dataset
+
+## The linear regression model framework cont'd  
+\begin{equation}
+Y_i \mid \mu_i, \sigma \overset{ind}{\sim} \textrm{Normal}(\mu_i, \sigma)
+\end{equation}
+
+- The $ind$ over $\sim$ indicates that each response $Y_i$ independentlyfollows its own normal density
+
+- A common standard deviation $\sigma$ is shared among all responses $Y_i$'s
+
+## The linear regression model framework cont'd  
+
+- Since we believe the size of the house is helpful in understanding a house's price, we represent the mean price $\mu_i$  as a linear functionof the house size $x_i$ depending on two parameters $\beta_0$ and $\beta_1$
+
+\begin{equation}
+\mu_i = \beta_0 + \beta_1 x_i
+\end{equation}
+
+## The intercept and slope parameters
+
+- How do we interpret the intercept and slope parameters? 
+
+\pause
+
+- The intercept $\beta_0$ gives the expected price $\mu_i$ for a house $i$ that has zero square feet ($x_i = 0$)
+    - not a meaningful parameter since no house (not even a tiny house) has zero square feet
+
+- The slope parameter $\beta_1$ gives the change in the expected price $\mu_i$, when the size $x_i$ of house $i$ increases by 1 unit, i.e., increases by 1000 square feet

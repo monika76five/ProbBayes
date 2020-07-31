@@ -1,0 +1,50 @@
+---
+title: Chapter 1.4a Subjective Viewpoint
+author: Jim Albert and Monika Hu
+date: Chapter 1 Probability, A Measure of Uncertainty
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Introduction
+
+- We have discussed two ways of thinking about probability.
+
+- The classical view. This is a useful way of thinking about probabilities when one lists all possible outcomes in such a way that each outcome is equally likely.
+
+- The frequency view. When one repeats a random experiment many times under similar conditions, one  approximates a probability of an event by the relative frequency\index{relative frequency} that the event occurs. 
+
+
+## What if classical or frequency viewpoints don't work?
+
+- What if the outcomes of the experiment are not equally likely, and it is not possible to repeat the experiment many times under similar conditions?
+
+- In this case, one can rely on a third view of probabilities, the subjective view. 
+
+- This interpretation is the most general way of thinking about a probability, since it can be used in a wide variety of situations.
+
+## Probability of a "one-time" event
+
+- Suppose one is interested in the probability of the event: "Her team will win the conference title in basketball next season.
+
+- One can't use the classical or frequency views to compute this probability.  The teams are not equally likely to win -- some teams are stronger than the rest.  So the classical approach won't help in obtaining this probability.
+
+- Also the event of her team winning the conference next year is essentially a one-time event. One can't repeat this experiment under similar conditions, and so the frequency view is not helpful in this case. 
+
+## What is a subjective probability?  
+
+- The probability $Prob$(Her team will win the conference in basketball next season) represents the person's belief in the likelihood that her team will win the basketball conference next season.
+
+- If she believes that her school will have a great team, she would give this probability a value close to 1.  
+
+- On the other hand, if she thinks that her school will have a  weak team, her probability of this event would be a small number close to 0.  
+
+- This probability is a numerical statement about the person's confidence in the truth of this event.
+
+## Two important aspects of a subjective probability
+
+
+1. A subjective probability is personal. One person's belief about her team winning the basketball conference is likely different from another person's belief about the team winning the conference since the two people have different information.  
+
+2. A subjective probability depends on one's current knowledge about the event in question.  Maybe the first person originally thinks that the probability is 0.7 since her school had a good team last year.  But when she learns that many of the star players have graduated, this may change her knowledge and  she may now assign this probability a smaller number.

@@ -1,0 +1,196 @@
+---
+title: Chapter 11.9 A Conditional Means Prior
+author: Jim Albert and Monika Hu
+date: Chapter 11 Simple Linear Regression
+output: 
+    beamer_presentation: default
+    logo: ProbBayes_cover.jpg
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(runjags)
+library(coda)
+library(tidyverse)
+library(ggridges)
+crcblue <- "#2905a1"
+```
+
+
+## Recap
+
+- Two methods for constructing  a prior on the parameters of a regression model so far:
+    - a weakly informative prior (on the original data)
+    - an informative prior (on the standardized data)
+  
+- A new approach
+    - on the original data
+    - instead of a prior on $(\beta_0, \beta_1, \sigma)$
+    - prior about  the expected response value conditional on specific values of the predictor variable
+
+
+## Learning about a gas bill from the outside temperature
+
+- Can one accurately predict one's monthly natural gas bill from the outside temperature?
+
+- Outcome / response variable: montly natural gas bill
+
+- Explanatory / predictor variable: outside temperature
+
+\pause 
+
+\begin{equation}
+Y_i \mid \beta_0, \beta_1, \sigma \sim {\rm Normal}(\beta_0 + \beta_1 x_i, \sigma)
+\end{equation}
+
+- $x_i$ and $y_i$ are respectively the average temperature (degrees in Fahrenheit) and the bill amount (in dollars) in month $i$
+
+- $(\beta_0, \beta_1, \sigma)$ are the unknown regression parameters
+
+## Learning about a gas bill from the outside temperature cont'd
+
+```{r size = "footnotesize", echo = FALSE, fig.height = 3, fig.width = 4.5, warning = FALSE, message = FALSE}
+gas_prices <- read_csv("gas2017.csv")
+
+ggplot(gas_prices, aes(Temp, Bill)) +
+  geom_point(size = 1, color = crcblue) +
+  xlab("Average Monthly Temperature (degrees F)") +
+  ylab("Monthly Bill (dollars)") +
+  theme(text = element_text(size=10))
+```
+
+## A conditional means prior
+
+- Assume independence of parameters, as before
+\begin{equation*}
+\pi(\beta_0, \beta_1, \sigma) = \pi(\beta_0, \beta_1) \pi(\sigma)
+\end{equation*}
+
+- Think about formulating prior opinion about the mean values
+\begin{equation}
+\mu_i^* = \beta_0 + \beta_1 x_i^*
+\end{equation}
+
+- For two specified values of the predictor $x_1^*$ and $x_2^*$
+
+## A conditional means prior cont'd
+
+Two steps:
+
+1. For the first predictor value $x_1^*$ construct a normal prior for the mean value $\mu_1^*$
+    - let the mean and standard deviation values of this prior be denoted by $m_1$ and $s_1$, respectively
+2. Similarly, for the second predictor value $x_2^*$  construct a normal prior for the mean value $\mu_2^*$ 
+    - let the mean and standard deviation values of this prior be denoted by $m_2$ and $s_2$
+
+## A conditional means prior cont'd
+
+- Under independence, the joint prior for the vector $(\mu_1^*, \mu_2^*)$ has the form
+\begin{equation*}
+\pi(\mu_1^*, \mu_2^*) = \pi(\mu_1^*) \pi(\mu_2^*)
+\end{equation*}
+
+\pause
+
+- This prior on the two conditional means implies a bivariate normal prior on the regression parameters
+\begin{equation}
+\beta_1 = \frac{\mu_2^* - \mu_1^*}{x_2 - x_1}
+\end{equation}
+\begin{equation}
+\beta_0 = \mu_1^* - x_1 \left(\frac{\mu_2^* - \mu_1^*}{x_2 - x_1}\right)
+\end{equation}
+
+- The slope $\beta_0$ and $\beta_1$ are linear functions of the two conditional means $\mu_1^*$ and $\mu_2^*$, implying a bivariate normal distribution for $\beta_0$ and $\beta_1$
+
+## Regression analysis of the gas bill example
+
+- Consider two different temperature values, say 40 degrees and 60 degrees
+
+- If $x = 40$, the mean bill $\mu_1^* = \beta_0 + \beta_1 (40)$ 
+    - a normal prior with mean \$100 and standard deviation \$20
+    - we believe the average gas bill will be relatively high during a cold month averaging 40 degrees
+
+- If $x = 60$, the  mean bill $\mu_2^* = \beta_0 + \beta_1 (100)$
+    - a normal with mean \$50 and standard deviation \$15
+    - we believe the gas cost will average \$50 lower than in the first scenario
+
+\pause
+
+- Under independence
+\begin{equation}
+\pi(\mu_1^*, \mu_2^*) = \phi(\mu_1^*, 100, 20) \phi(\mu_2^*, 50, 15),
+\end{equation}
+where $\phi(y, \mu, \sigma)$ denotes the normal density with mean $\mu$ and standard deviation $\sigma$
+
+## Regression analysis of the gas bill example cont'd
+
+- The prior on the two means is an indirect way of assessing a prior on the regression parameters $\beta_0$ and $\beta_1$
+
+- We can  simulate pairs $(\beta_0, \beta_1)$ from the prior distribution by simulating values of the means $\mu_1^*$ and $\mu_2^*$ from independent normal distributions and applying Equation (3) and Equation (4)
+
+```{r size = "footnotesize"}
+modelString = "
+model{
+beta1 <- (mu2 - mu1) / (x2 - x1)
+beta0 <- mu1 - x1 * (mu2 - mu1) / (x2 - x1)
+mu1 ~ dnorm(m1, s1)
+mu2 ~ dnorm(m2, s2)
+}"
+```
+
+## Regression analysis of the gas bill example cont'd
+
+```{r size = "footnotesize", echo = FALSE, fig.height = 2.5, fig.width = 4, warning = FALSE, message = FALSE, results = 'hide'}
+the_data <- list("x1" = 40,
+                 "x2" = 60,
+                 "m1" = 100,
+                 "m2" = 50,
+                 "s1" = 1 / 20 ^ 2,
+                 "s2" = 1 / 15 ^ 2)
+
+initsfunction <- function(chain){
+  .RNG.seed <- c(1,2)[chain]
+  .RNG.name <- c("base::Super-Duper",
+                 "base::Wichmann-Hill")[chain]
+  return(list(.RNG.seed=.RNG.seed,
+              .RNG.name=.RNG.name))
+}
+
+prior <- run.jags(modelString,
+                       n.chains = 1,
+                       data = the_data,
+                       monitor = c("beta0", "beta1"),
+                       adapt = 1000,
+                       burnin = 5000,
+                       sample = 5000,
+                       inits = initsfunction)
+
+prior %>% as.mcmc() %>% as.data.frame() -> prior_df
+
+
+ggplot(prior_df, aes(beta0, beta1)) +
+  geom_point(color = crcblue, alpha = 0.2) +
+  increasefont(Size = 10) +
+  xlab("beta0") +
+  ylab("beta1")
+
+```
+
+- 1000 simulated draws of $(\beta_0, \beta_1)$ 
+- The implied prior on the regression coefficients indicates that $\beta_0$ and $\beta_1$ are strongly negatively correlated
+
+## Regression analysis of the gas bill example cont'd
+
+- Don't forget to assign the precision parameter $\phi = 1 / \sigma^2$ a gamma prior with parameters $a$ and $b$
+\begin{equation*}
+\pi(\beta_0, \beta_1, \sigma)  = \pi_{CM}(\beta_0, \beta_1) \pi(\sigma),
+\end{equation*}
+where $\pi_{CM}$ is the conditional means prior
+
+\pause
+
+- Use JAGS for posterior inference
+
+- Compare inferences using conditional means and weakly informative priors

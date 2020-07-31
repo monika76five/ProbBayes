@@ -1,0 +1,70 @@
+---
+title: Chapter 4.3 Probability Distribution
+author: Jim Albert and Monika Hu
+date: Chapter 4 Discrete Distributions
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## A Probability Distribution
+
+- Suppose $X$ is a discrete random variable that only assigns probability to a discrete set of values.  
+
+- The function $f(x)$ is a probability mass function (pmf) for $X$ if the function satisfies two properties.
+
+1. $f(x) \ge 0$ for each possible value $x$ of $X$
+2. $\sum_x f(x) = 1$
+
+- You can check that the function $f()$ in our coin-tossing example satisfies the two properties.
+
+## Graphing a Probability Distribution.
+
+- One graphically displays a probability distribution with a bar graph\index{bar graph}.  
+
+```{r, echo = FALSE , out.width = 200, message = FALSE, fig.cap = "Probability distribution of the net gains for Peter in the Peter-Paul game."}
+library(ProbBayes)
+df <- data.frame(Gain = c(-10, -6, -2, 2, 6, 10),
+                 Probability = c(1, 5, 10, 10, 5, 1) / 32)
+prob_plot(df)
+```
+
+## Comments
+
+- This figure shows that it is most likely for Peter to finish with a net gain of $+2$ or $-2$ dollars.  
+
+- Also note the symmetry of the graph -- the symmetry about the value 0 indicates that this game is fair.   
+
+
+## Simulating the Peter-Paul Gam
+
+- One can simulate this game in R.  A function ```one_play()```\index{one\_play()} is written which will play the game one time, returning the net gain for Paul.
+
+```{r}
+one_play <- function(){
+  flips <- sample(c("H", "T"), 
+                  size = 5,
+                  replace = TRUE)
+  2 * sum(flips == "H") -
+       2 * sum(flips == "T")
+}
+```
+
+## Playing the Game Many Times
+
+- The ```replicate()```\index{replicate()} function is used to simulate 1000 plays of the game and the net gains are stored in the vector ```G```.  
+
+- The figure on the next slide constructs a bar graph of the net gains, -- it resembles the graph of the probability distribution of $G$.
+
+```
+G <- replicate(1000, one_play())
+bar_plot(G)
+```
+
+## Bar Graph of Net Games in Simulation
+
+```{r, out.width  = 250, echo = FALSE}
+knitr::include_graphics("figures/discrete1.png")
+```
+
+

@@ -1,0 +1,152 @@
+---
+title: Chapter 3.7 The Multiplication Rule Under Independence
+author: Jim Albert and Monika Hu
+date: Chapter 3 Conditional Probability
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Definition
+
+- When two events $A$ and $B$ are independent\index{independent}, then the multiplication rule takes the simple form
+
+ \begin{equation}
+ P(A \cap B) = P(A) \times P(B).
+ \end{equation}
+
+- f one has a sequence of independent events, say $A_1, A_2, \cdots, A_k$, then the probability that all events happen simultaneously is the product
+
+\begin{equation}
+  P(A_1 \cap A_2 \cap \cdots \cap A_k) = P(A_1) \times P(A_2) \times \cdots \times P(A_k).
+\end{equation}
+  
+## Blood Types of Couples
+
+- White Americans have the blood types $O, A, B$, and $AB$ with respectively proportions 0.45, 0.40, 0.11, and 0.04.  
+
+- Suppose two people in this group are married.
+
+- Look at probabilities of some interesting events.
+
+## What is the probability that the man has blood type O and the woman has blood type A?
+
+- Let  $O_M$ denote the event that the man has $O$ blood type and $A_W$ the event that the woman has $A$ blood type.  
+
+- Since these two people are not related, it is reasonable to assume that $O_M$ and $A_W$ are independent.  
+
+- Applying the multiplication rule, get
+
+\begin{align*}
+P(O_M \cap A_W) & = P(O_M) \times P(A_W) \\
+& = (0.45) \times (0.40) = 0.18.
+ \end{align*}
+ 
+## What is the probability the couple have O and A blood types?
+
+- Either the man has blood type $O$  and the woman has blood type $A$, or the other way around.  
+
+- So the probability of interest is
+ \begin{align*}
+P({\rm two \, have \, A, O \, types}) & = P((O_M \cap A_W) \cup (O_W \cap A_M)) \\
+& = P(O_M \cap A_W)+ P(O_W \cap A_M).
+ \end{align*}
+
+- One adds the probabilities since  $O_M \cap A_W$ and $O_W \cap A_M$ are different outcomes. 
+
+ \begin{align*}
+P({\rm two \, have \, A, O \, types}) & = P((O_M \cap A_W) \cup (O_W \cap A_M)) \\
+& = P(O_M \cap A_W)+ P(O_W \cap A_M) \\
+& = (0.45) \times (0.40) + (0.45) \times (0.40) \\
+& = 0.36.
+ \end{align*}
+ 
+## What is the probability the man and the woman have the same blood type?
+
+- There are four possible ways for this to happen:  they can both have type $O$, they both have type $A$, they have type $B$, or they have type $AB$. 
+
+- One first finds the probability of each possible outcome and then sum the outcome probabilities.
+
+\begin{align*}
+P({\rm same \, type}) & = P((O_M \cap O_W) \cup (A_M \cap A_W) \cup\\
+&  (B_M \cap B_W) \cup (AB_W \cap AB_M)) \\
+& = (0.45)^2 + (0.40)^2 + (0.11)^2 + (0.04)^2 \\
+& = 0.3762.
+ \end{align*}
+ 
+ 
+## What is the probability the couple have different blood types?
+
+- A simple way of doing this is to note that the event  "having different blood types" is the complement\index{complement} of the event "have the same blood type". 
+
+- Then using the complement property\index{complement!property} of probability,
+ 
+ \begin{align*}
+P({\rm different \, type}) & = 1 - P({\rm same \, type}) \\
+& = 1 - 0.3762 \\
+& = 0.6238.
+ \end{align*}
+ 
+ 
+## A Five-Game Playoff
+
+- Suppose two baseball teams play in a "best of five" playoff series, where the first team to win three games wins the series.  
+
+- Suppose the Yankees play the Angels and one believes that the probability the Yankees will win a single game is 0.6.  
+
+- If the results of the games are assumed independent, what is the probability the Yankees win the series?
+
+## Comments
+
+- There are numerous outcomes of this series of games.  
+
+- Note  that the playoff can last three games, four games, or five games.   
+
+- In listing outcomes, one lets $Y$  and $A$ denote respectively the single-game outcomes "Yankees win" and "Angels win".  
+
+- Then a series result is represented by a sequence of letters.  For example, $YYAY$ means that the Yankees won the first two games, the Angels won the third game, and the Yankees won the fourth game and the series.  
+
+## Playoff outcomes
+
+
+|              Three games               |                    Four games                     |                     Five games                      |
+| :------------------------------------: | :-----------------------------------------------: | :-------------------------------------------------: |
+| <span class="underline">\(YYY\)</span> | <span class="underline">\(YYAY\)</span>, \(AAYA\) | <span class="underline">\(YYAAY\)</span>, \(AAYYA\) |
+|                \(AAA\)                 | <span class="underline">\(YAYY\)</span>, \(AYAA\) | <span class="underline">\(YAYAY\)</span>, \(AYAYA\) |
+|                                        | <span class="underline">\(AYYY\)</span>, \(YAAA\) | <span class="underline">\(YAAYY\)</span>, \(AYYAA\) |
+|                                        |                                                   | <span class="underline">\(AYYAY\)</span>, \(YAAYA\) |
+|                                        |                                                   | <span class="underline">\(AYAYY\)</span>, \(YAYAA\) |
+|                                        |                                                   | <span class="underline">\(AAYYY\)</span>, \(YYAAA\) |
+
+
+## Probability Yankees win series
+
+- Identify the outcomes above where the Yankees win are underlined.   
+
+- By the assumption of independence, one finds the probability of a specific outcome -- for example, the probability of the outcome $YYAY$ as
+\begin{align*}
+P(YYAY) &= (0.6) \times (0.6) \times (0.4) \times (0.6) \\
+&= 0.0864.
+ \end{align*}
+ 
+ 
+- One finds the probability that the Yankees win the series by finding the probabilities of each type of Yankees win and adding the outcome probabilities.  
+
+## Table of probabilities of Yankees winning outcomes
+
+|    Three games     |      Four games      |      Five games       |
+| :----------------: | :------------------: | :-------------------: |
+| \(P(YYY) = 0.216\) | \(P(YYAY) = 0.0864\) | \(P(YYAAY) = 0.0346\) |
+|                    | \(P(YAYY) = 0.0864\) | \(P(YAYAY) = 0.0346\) |
+|                    | \(P(AYYY) = .0864\)  | \(P(YAAYY) = 0.0346\) |
+|                    |                      | \(P(AYYAY) = 0.0346\) |
+|                    |                      | \(P(AYAYY) = 0.0346\) |
+|                    |                      | \(P(AAYYY) = 0.0346\) |
+
+
+- So the probability of interest is given by
+ \begin{align*}
+P({\rm Yankees \, win \, series}) &= P(YYY, YYAY, YAYY, ...) \\
+&= 0.216 + 3 \times 0.864 + 6 \times 0.0346 \\
+&= 0.683.
+ \end{align*}
