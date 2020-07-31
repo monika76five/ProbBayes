@@ -1,0 +1,122 @@
+---
+title: Chapter 2.6 Arrangements of Nondistinct Objects
+author: Jim Albert and Monika Hu
+date: Chapter 2 Counting Methods
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Creating silly words
+
+- Suppose one is making up silly words from the letters "a", "b", "c", "d", "e", "f", like
+
+bacedf, decabf, eabcfd
+
+- How many silly words can one make up?  
+
+- Using the permutation rule\index{permutations!rule}, the number of possible permutations\index{permutations} is 
+$$
+6! = 6 \times 5 \times 4 \times ...\times 1.
+$$
+
+## Second counting rule
+
+- Suppose one has six letters "a", "b", "c", "d", "e", "f", and one is going to choose three of the letters to construct a three-letter word.  
+
+- One cannot choose the same letter twice and the order in which one chooses the letters is not important.  
+
+- Here one is interested in the number of combinations\index{combinations} -- the number of ways of choosing three letters from six is equal to
+$$
+{6 \choose 3} = \frac{6!}{3! \, 3!}.
+$$
+ 
+## Different arrangement problem
+
+- One randomly arranges the four triangles and five squares as shown below.  
+
+```{r,  echo = FALSE, out.width  = 200}
+knitr::include_graphics("chapter2/objects.png")
+```
+ 
+- What is the chance that the first and last locations are occupied by triangles?  
+
+## What is the difference?
+
+- This is an arrangement problem with one difference -- the objects are not all distinct
+
+- So one cannot use the earlier permutations rule that assumes the objects are distinguishable.
+
+- How can one count the number of possible arrangements?  
+
+## Possible arrangements
+
+- Suppose one writes down a list of nine slots and an arrangement is constructed by placing the triangles and the squares in the nine slots.  
+ 
+
+```{r,  echo = FALSE, out.width  = 200}
+knitr::include_graphics("chapter2/objects2.png")
+```
+
+## Constructing an arrangement
+
+
+- First, place the four triangles in four slots, and then place the squares in the remaining slots.
+
+- How many ways can one put the triangles in the slots?  For example, one could place the triangles in slots 1, 3, 4, and 8.
+ 
+ ```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("chapter2/objects3.png")
+```
+
+- Or one could place the four triangles in slots 2, 5, 7, and 8.
+ 
+ ```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("chapter2/objects4.png")
+```
+
+## Constructing an arrangement
+
+- One specifies an arrangement by choosing four locations from the slot locations \{1, 2, 3, 4, 5, 6, 7, 8, 9\}.  
+
+- One knows that the number of ways of selecting four objects from a group of nine objects is
+$$
+{9 \choose 4} = \frac{9!}{4! (9 - 4)!} = 126.
+$$
+ 
+- One finishes the arrangement by putting in the squares.  But there is only one way of doing this. 
+
+- So applying the multiplication rule, the number of ways of arranging four triangles and five squares is $126 \times 1 = 126$.
+
+## Permutations Rule for Non-Distinct Objects
+
+- The number of permutations of $n$ non-distinct objects where $r$ are of one type and $n - r$ are of a second type is
+$$
+{n \choose r} = \frac{n!}{r! (n - r)!}.
+$$
+ 
+## Back to example
+
+- Suppose four triangles and five squares are randomly arranged.  What is the chance that the first and last locations are occupied by triangles?
+
+- We know there are 126 ways of mixing up four triangles and five squares.  
+
+- Each possible arrangement is equally likely\index{equally likely} and has a chance of 1/126 of occurring.
+
+## Finding the probability
+
+- One needs to count the number of ways of arranging the triangles and squares so that the first and last positions are filled with triangles.
+ 
+ ```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("chapter2/objects5.png")
+```
+
+- If one places triangles in slots 1 and 9, then one is free to arrange the remaining two triangles and five squares in the remaining 7 slots.  By use of the new arrangements formula, the number of ways is
+$$
+{7 \choose 2} = \frac{7!}{2! (7 - 2)!} = 21
+$$
+and so the probability the first and last slots are filled with triangles is equal to 21/126.
+
+
+
+

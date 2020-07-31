@@ -1,0 +1,111 @@
+---
+title: Chapter 2.4 Permutations
+author: Jim Albert and Monika Hu
+date: Chapter 2 Counting Methods
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Playing some music
+
+- Suppose one places six songs, Song $A$, Song $B$, Song $C$, Song $D$, Song $E$, and Song $F$ in one's playlist on the streaming service.  
+
+- The songs are played in a random order and one listens to the first three songs.  
+
+- How many different selections of three songs can one hear?
+
+## Permutations
+
+- In this example, one is assuming that the order that the songs are played is important.  So hearing the selections
+
+Song $A$, Song $B$, Song $C$
+
+in that order will be considered different from hearing the selections in the sequence
+
+Song $C$, Song $B$, Song $A$.
+
+- An outcome such as this is called a permutation or arrangement of 3 out of the 6 songs.
+
+## Representing outcomes
+
+- One represents possible permutations by a set of three blanks, where songs are placed in the blanks.
+
+\medskip
+
+|                                 |                                 |                                 |
+| :-----------------------------: | :-----------------------------: | :-----------------------------: |
+| <span class="underline"></span> | <span class="underline"></span> | <span class="underline"></span> |
+|            1st Song             |            2nd Song             |            3rd Song             |
+
+## Counting number of permutations
+
+- First, it is known that 6 possible songs can be played first.  
+
+|          |                                 |                                 |
+| :------: | :-----------------------------: | :-----------------------------: |
+|    6     | <span class="underline"></span> | <span class="underline"></span> |
+| 1st Song |            2nd Song             |            3rd Song             |
+
+
+- If one places a particular song, say Song A, in the first slot, there are 5 possible songs in the second position.  
+
+|          |          |                                 |
+| :------: | :------: | :-----------------------------: |
+|    6     |    5     | <span class="underline"></span> |
+| 1st Song | 2nd Song |            3rd Song             |
+
+- By use of the multiplication rule\index{multiplication rule!counting}, there are $6 \times 5 = 30$ ways of placing two songs in the first two slots.
+
+## Counting permutations
+
+- Continuing in the same way, one sees that there are 4 ways of putting a song in the third slot and completing the list of three songs.
+
+|          |          |          |
+| :------: | :------: | :------: |
+|    6     |    5     |    4     |
+| 1st Song | 2nd Song | 3rd Song |
+
+
+- Again using the multiplication rule, we see that the number of possible permutations of six songs in the three positions is
+$$
+6 \times 5 \times 4 = 120.
+$$
+
+
+## Permutations rule
+
+- If one has $n$ objects (all distinguishable), then the number of ways to arrange $r$ of them, called the number of permutations, is 
+
+$$
+ _n P_r =  n \times (n - 1) \times  ... \times (n - r + 1).
+$$
+
+- In this example, $n = 6$ and $r = 3$ and $_n P_r = 120$.
+
+## Computing probabilities
+
+- If three songs are played in one's playlist, each of the 120 possible permutations will be equally likely\index{equally likely} to occur.  
+
+- So the probability of any single permutation, say 
+Song $A$, Song $D$, Song $B$
+
+is equal to 1/120.
+
+## Playing all songs
+
+- Suppose one listens to all six songs on the playlist.  How many possible orders are there?  
+
+- One is finding the number of ways of arranging the entire set of 6 objects.  Here $n = 6$ and $r = 6$ and, applying the permutation rule formula, the number of permutations is
+ $$
+ _6 P_6= n! = 6 \times 5 \times  4 \times... \times 1 = 720.
+ $$
+
+- One uses the special symbol $n!$ to denote the product of the integers from 1 to n.  So the number of ways of arranging $n$ distinct objects is
+$$
+ _n P_n= n! = n \times (n - 1) \times  (n - 2) 
+ $$
+ 
+
+
+

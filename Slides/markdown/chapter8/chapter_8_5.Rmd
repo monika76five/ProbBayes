@@ -1,0 +1,186 @@
+---
+title: Chapter 8.5 Updating the Normal Prior
+author: Jim Albert and Monika Hu
+date: Chapter 8 Modeling Measurement and Count Data
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## Introduction 
+
+- Current prior beliefs about Federer's mean time-to-serve $\mu$ are represented by a Normal curve\index{Normal!curve} with mean $18$ seconds and standard deviation 1.56 seconds.  
+
+- Data is collected --- Federer's time-to-serves are recorded for 20 serves and the sample mean\index{sample!mean} is $17.2$ seconds. 
+
+## Likelihood
+
+- With substitution of the values $\bar y = 17.2$, $n = 20$, and $\sigma = 4$, we obtain
+$$
+L(\mu) \propto \exp \left\{-\frac{20}{2 (4)^2}(17.2 - \mu)^2\right\} 
+$$
+
+- Viewing the likelihood as a function of the parameter $\mu$ , the likelihood is recognized as a Normal density\index{Normal!density} with mean $\bar y = 17.2$ and standard deviation $\sigma / \sqrt{n} = 4 / \sqrt{20} = 0.89$.
+
+## Conjugate analysis
+
+- One obtains the posterior density curve by multiplying the Normal prior by the likelihood.  
+
+- Working through some  algebra, one will see that the posterior density\index{posterior} also has the Normal density form. 
+
+- The Normal prior is said to be *conjugate*\index{conjugate} since the prior and posterior densities come from the same distribution family: Normal. 
+
+- To be specific, if one has a Normal prior for the unknown mean $\mu$ with mean $\mu_0$ and standard deviation $\sigma_0$, one obtains a  Normal posterior\index{Normal!posterior} for $\mu$ with updated parameters $\mu_n$ and $\sigma_n$.
+
+
+## Summary of the update procedure 
+
+- In table, there are rows corresponding to Prior, Data/Likelihood, and Posterior and columns corresponding to Mean, Precision\index{precision}, and Standard Deviation.  
+
+- We put in the information we know.
+
+| Type            |  Mean | Precision | Stand |
+| :-------------- | ----: | --------: | ----: |
+| Prior           | 18.00 |           |  1.56 |
+| Data/Likelihood | 17.20 |           |  0.89 |
+| Posterior       |       |           |       |
+
+## Precision
+
+- We define the *precision*, $\phi$, to be the reciprocal of the square of the standard deviation.  
+- We compute the precisions of the prior and data from the given standard deviations and fill in the Precision column of the table.
+
+| Type            |  Mean | Precision | Stand |
+| :-------------- | ----: | --------: | ----: |
+| Prior           | 18.00 |      0.41 |  1.56 |
+| Data/Likelihood | 17.20 |      1.26 |  0.89 |
+| Posterior       |       |           |       |
+
+## Precisions add
+
+- The Posterior precision is the sum of the Prior precision and the Data/Likelihood precisions:  
+$$
+\phi_{post} = \phi_{prior} + \phi_{data} = 0.41 + 1.26 = 1.67.
+$$
+
+- The posterior standard deviation is computed as the reciprocal of the square root of the precision. 
+$$
+\sigma_n = \frac{1}{\sqrt{\phi_{post}}} = \frac{1}{\sqrt{1.67}} = 0.77.
+$$
+
+## Adding to table
+
+- These standard deviations are entered into the table.
+
+| Type            |  Mean | Precision | Stand |
+| :-------------- | ----: | --------: | ----: |
+| Prior           | 18.00 |      0.41 |  1.56 |
+| Data/Likelihood | 17.20 |      1.26 |  0.89 |
+| Posterior       |       |      1.67 |  0.77 |
+
+## Posterior mean
+
+- The posterior mean\index{posterior!mean} is a weighted average\index{weighted average} of the Prior and Data/Likelihood means where the weights are given by the corresponding precisions. 
+
+- That is, the formula is given by
+$$
+\mu_n = \frac{\phi_{prior} \times \mu_0 + \phi_{data} \times \bar y}{\phi_{prior} + \phi_{data}}.
+$$
+- By making appropriate substitutions, we obtain the posterior mean:
+$$
+\mu_n = \frac{0.41 \times 18.00 + 1.26 \times 17.20}{0.41 + 1.26} = 17.40.
+$$
+
+## The posterior
+
+The posterior density is Normal with mean $17.40$ seconds and standard deviation $0.77$ seconds.
+
+| Type            |  Mean | Precision | Stand |
+| :-------------- | ----: | --------: | ----: |
+| Prior           | 18.00 |      0.41 |  1.56 |
+| Data/Likelihood | 17.20 |      1.26 |  0.89 |
+| Posterior       | 17.40 |      1.67 |  0.77 |
+
+
+## Using R
+
+The Normal updating is performed by the R function ```normal_update()```\index{normal_update()}.  One inputs two vectors -- ```prior``` is a vector of the prior mean\index{prior!mean} and standard deviation and ```data``` is a vector of the sample mean and standard error.  The output is a vector of the posterior mean and posterior standard deviation.
+
+```{r, warning = FALSE, message = FALSE}
+prior <- c(18, 1.56)
+data <- c(17.20, 0.89)
+normal_update(prior, data)
+```
+
+## Plotting prior and posterior
+
+- The posterior  has a smaller spread since the posterior has more information than the prior about Federer's mean time-to-serve.  
+
+```{r, echo = FALSE, warning = FALSE, fig.height = 4, message = FALSE, fig.cap = "Prior and posterior curves for Federer's mean time-to-serve $\\mu$."}
+par1 <- c(18, 1.56)
+par2 <- c(17.4, 0.77)
+ggplot(data.frame(x = c(10, 25)), aes(x)) +
+  stat_function(fun = dnorm, size = 1.5,
+                linetype = "dashed",
+                color = crcblue,
+                args = list(mean = 18, sd = 1.56)) +
+  stat_function(fun = dnorm, size = 1.5,
+                color = crcblue,
+                args = list(mean = 17.4, sd = 0.77)) +
+  increasefont() +
+  xlab(expression(mu))  +
+  annotate(geom = "text", x = 21, y = 0.2,
+           label = "Prior", size = 6) +
+  annotate(geom = "text", x = 20, y = 0.45,
+           label = "Posterior", size = 6)
+```
+
+## Summary of our work
+
+- We collect a sample of data $Y_1, ..., Y_n$ that is $\textrm{Normal}(\mu, \sigma)$ where we assume the sampling standard deviation $\sigma$ is known.
+ 
+- We assign a ${\rm{Normal}}(\mu_0, \sigma_0)$ prior to the mean $\mu$
+
+- After $Y_1 = y_1, ..., Y_n = y_n$ are observed, the posterior distribution for the mean $\mu$ is another Normal distribution 
+
+- Posterior mean is $\frac{\phi_0 \mu_0 + n\phi\bar{y} }{\phi_0 + n \phi}$ 
+
+- Posterior precision is $\phi_0 + n \phi$ (thus standard deviation $\sqrt{\frac{1}{\phi_0 + n \phi}}$):
+
+## Posterior compromises between the prior and the sample 
+
+- One can rewrite the posterior mean as
+
+$$
+\mu_n =  \frac{\phi_0}{\phi_0 + n\phi} \mu_0 +  
+\frac{n\phi}{\phi_0 + n\phi}  \bar{y}.
+$$
+
+
+- The prior precision is equal to $\phi_0$ and the precision in the likelihood for any $y_i$ is $\phi$. Since there are $n$ observations, the precision in the joint likelihood is $n\phi$.
+
+-  The posterior mean is a weighted average of the prior mean $\mu_0$ and sample mean $\bar y$ where the weights are proportional to the associated precisions.
+ 
+## The posterior accumulates information in the prior and the sample 
+
+- The precision of the posterior Normal mean is the sum of the precisions of the prior and likelihood.  
+
+- That is,
+ $$
+ \phi_n = \phi_0 + n \phi.
+ $$
+ - The implication is that the posterior standard deviation will always be smaller than either the prior standard deviation or the sampling standard error:
+ $$
+ \sigma_n < \sigma_0, \, \, \, \sigma_n < \frac{\sigma}{\sqrt{n}}.
+ $$
+
+
+

@@ -1,0 +1,122 @@
+---
+title: Chapter 8.7 Posterior Predictive Checking
+author: Jim Albert and Monika Hu
+date: Chapter 8 Modeling Measurement and Count Data
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## Introduction
+
+- The posterior predictive distribution is  helpful for assessing the suitability of the Bayesian model.
+
+- The question is whether these observed times to serve for Federer are consistent with replicated data from the posterior predictive distribution.  
+
+- Replicated refers to the same sample size as our original sample.  If one takes samples of 20 from the posterior predictive distribution, do these replicated datasets resemble the observed sample?
+
+## Simulations of replicated data
+
+- Since the population standard deviation is known as $\sigma = 4$ seconds, the sampling distribution of $Y$ is Normal\index{Normal} with mean $\mu$ and standard deviation $\sigma$.  
+
+- One simulates replicated data $\tilde Y_1, ..., \tilde Y_{20}$  from the posterior predictive distribution in two steps:
+
+1. Sample a value of $\mu$ from its posterior distribution
+$$
+\mu \sim \textrm{Normal}\left(\frac{\phi_0\mu_0 + n\phi\bar{y}}{\phi_0 + n\phi}, \sqrt{\frac{1}{\phi_0 + n\phi}}\right).
+$$
+
+2. Sample $\tilde Y_1, ..., \tilde Y_{20}$ from the data model 
+$$
+\tilde{Y} \sim \textrm{Normal}(\mu, \sigma).
+$$
+
+## Using R
+
+- Implement method in the following R script to simulate 1000 replicated samples from the posterior predictive distribution.  
+
+- The vector ```pred_mu_sim``` contains draws from the posterior  and the matrix ```ytilde``` contains the simulated predictions where each row of the matrix is a simulated sample of 20 future times.
+
+```{r, warning = FALSE, message = FALSE, echo = FALSE}
+set.seed(123)
+```
+
+```{r, warning = FALSE, message = FALSE}
+sigma <- 4;  mu_n <- 17.4
+sigma_n <- 0.77; S <- 1000
+pred_mu_sim <- rnorm(S, mu_n, sigma_n)
+sim_ytilde <- function(j){
+  rnorm(20, pred_mu_sim[j], sigma)
+}
+ytilde <- t(sapply(1:S, sim_ytilde))
+```
+
+## Goodness of fit
+
+- To judge goodness of fit, compare these simulated replicated datasets from the posterior predictive distribution with the observed data.  
+
+- One convenient way to implement this comparison is to compute some "testing function", $T(\tilde y)$, on each replicated dataset.  
+
+- One constructs a graph of these values and overlays the value of the testing function on the observed data $T(y)$.   
+
+- If the observed value is in the tail of the posterior predictive distribution of $T(\tilde y)$, this indicates some misfit of the observed data with the Bayesian model.
+
+## Choosing a testing function
+
+To implement this procedure, one needs to choose a testing function $T(\tilde y)$.  Suppose, for example, one decides to use the sample mean $T(\tilde y) = \sum  \tilde y_j / 20$.  In the R script, we compute the sample mean on each row of the simulated prediction matrix.
+
+```{r, warning = FALSE, message = FALSE}
+pred_ybar_sim <- apply(ytilde, 1, mean)
+```
+
+## Predictive distribution
+
+- Show density estimate of the posterior predictive distribution of $\bar Y$ and the observed value of the sample mean $\bar Y = 17.20$ is displayed as a vertical line.  
+
+
+```{r, echo = FALSE, warning = FALSE, fig.height = 4, message = FALSE, fig.cap = "Display of the posterior predictive mean time-to-serve for twenty observations. The observed mean time-to-serve value is displayed by a vertical line."}
+set.seed(123)
+
+sigma <- 4
+mu_n <- 17.4
+sigma_n <- 0.77
+ybar <- 17.2
+
+S <- 1000
+pred_mu_sim <- rnorm(S, mu_n, sigma_n)
+
+  sim_ytilde <- function(j){
+    rnorm(20, pred_mu_sim[j], sigma)
+  }
+  ytilde <- t(sapply(1:S, sim_ytilde))
+
+pred_ybar_sim <- apply(ytilde, 1, mean)
+
+library(latex2exp)
+ggplot(data.frame(Ybar = pred_ybar_sim),
+       aes(Ybar)) +
+  geom_density(size = 1.5, color = crcblue) +
+  geom_vline(xintercept = ybar, size = 1.5) +
+  annotate(geom = "text", x = 16.1, y = .32,
+           label = TeX("$\\bar{Y}_{OBS}$"),
+           size = 8) +
+  increasefont() +
+  ylab("Density") +
+  xlab(TeX("$\\bar{Y}$"))
+```
+
+## Conclusion
+
+- Note this observed mean is in the middle of this distribution
+
+- One concludes that this observation is consistent with samples predicted from the Bayesian model.
+
+- But one can consider alternative choices for checking functions.

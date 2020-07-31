@@ -1,0 +1,66 @@
+---
+title: Chapter 11.2 Example - Prices and Areas of House Sales
+author: Jim Albert and Monika Hu
+date: Chapter 11 Simple Linear Regression
+output: 
+    beamer_presentation: default
+    logo: ProbBayes_cover.jpg
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(runjags)
+library(coda)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## The dataset
+
+- Zillow: an online real estate database company that collects information on 110 million homes across the United States
+
+- Our sample: a random sample of 24 houses for sale in the Findlay, Ohio area during October 2018
+
+- For each house, the dataset contains the selling price (in \$1000) and size (in 1000 square feet)
+
+## The dataset cont'd
+
+| Index | Price ($1000) | Size (1000 sq feet) |
+| :---: | :-----------: | :-----------------: |
+|   1   |      167      |        1.625        |
+|   2   |      236      |        1.980        |
+|   3   |      355      |        2.758        |
+|   4   |      148      |        1.341        |
+|   5   |      93       |        1.465        |
+
+## The dataset cont'd
+
+```{r, fig.height = 3, fig.width = 4.5, message = FALSE, warning = FALSE, echo = FALSE}
+PriceAreaData <- read_csv("house_prices.csv")
+
+PriceAreaData$newsize <- PriceAreaData$size / 1000
+
+ggplot(PriceAreaData, aes(x = newsize, y = price)) +
+  geom_point(size=1, color = crcblue) +
+  labs(x = "Size (1000 sq feet)", y = "Price ($1,000)") +
+  increasefont(Size = 10)
+```
+
+## Some questions
+
+- Suppose one is interested in predicting a house's selling price  from its house size
+
+- The scatter plot shows a positive relationship between the size and the price of a house sale, suggesting that the house sale price increases as the house size increases
+
+\pause
+
+- Can one quantify this relationship through a Bayesian linear regression model? 
+
+- Is there sufficient evidence that there is a positive association among the population of all homes?  
+
+- Can one predict the sale price of a home given its size?
+
+

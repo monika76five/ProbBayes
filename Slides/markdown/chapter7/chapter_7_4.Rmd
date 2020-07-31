@@ -1,0 +1,160 @@
+---
+title: Chapter 7.4 Updating the Beta Prior
+author: Jim Albert and Monika Hu
+date: Chapter 7 Learning About a Binomial Probability
+output: 
+    beamer_presentation: default
+    logo: ProbBayes_cover.jpg
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+crcblue <- "#2905a1"
+```
+
+## Introduction
+
+- Beta prior: Beta(3.06, 2.56)
+- Binomial data: 12 yes's out of 20
+
+$$
+Likelihood = L(p) = {20 \choose 12} p ^ {12 }(1 - p) ^ 8
+$$
+
+- We will see that a beta prior leads to a beta posterior: conjugacy
+
+
+## Bayes' rule calculation
+
+- Bayes' rule
+$$
+\pi(p \mid y) \propto  \pi(p) \times L(p)
+$$
+
+- A beta prior
+$$
+p \sim \textrm{Beta}(3.06, 2.56)
+$$
+
+- The data / likelihood
+$$
+Y \sim \textrm{Binomial}(20, p)
+$$
+
+
+## Bayes' rule calculation cont'd
+
+- The prior distribution:
+$$
+\pi(p) = \frac{1}{B(3.06, 2.56)}p^{3.06-1}(1-p)^{2.56-1}
+$$
+
+- The likelihood:
+$$
+f(Y =12 \mid p) = L(p) = {20 \choose 12}p^{12}(1-p)^{8}
+$$
+
+
+- By Bayes' rule,  the posterior density $\pi(p \mid y)$ is proportional to the product of  the prior and the likelihood.  
+$$
+\pi(p \mid y) \propto \pi(p) \times L(p).
+$$
+
+## Bayes' rule calculation cont'd
+
+- Substituting the current prior and likelihood, one can perform the algebra for the posterior density.
+$$
+\pi(p \mid Y = 12) \propto p^{3.06-1}(1-p)^{2.56-1} \times p^{12}(1-p)^{8}
+$$
+$$
+\pi(p \mid Y = 12) \propto p^{15.06-1}(1-p)^{10.56-1}
+$$
+- What is the posterior?
+
+## A beta posterior
+
+- Beta(a,b) density:
+$$
+\propto p^{a-1}(1-p)^{b-1}
+$$
+- The posterior density:
+$$
+\pi(p \mid Y = 12) \propto p^{15.06-1}(1-p)^{10.56-1}
+$$
+
+- The posterior distribution is another beta:
+
+$$
+p \mid Y = 12 \sim \textrm{Beta}(15.06, 10.56)
+$$
+
+
+
+## From beta prior to beta posterior
+
+- The prior distribution:
+$$
+p \sim \textrm{Beta}(a, b)
+$$
+
+- The sampling density:
+$$
+Y \sim \textrm{Binomial}(n, p)
+$$
+
+
+- The posterior distribution:
+$$
+p \mid Y = y \sim \textrm{Beta}(a + y, b + n - y)
+$$
+
+## A summary table
+
+
+Table 7.1.  Updating the Beta prior.
+
+|     Source      | Successes |   Failures    |
+| :-------------: | :-------: | :-----------: |
+|      Prior      |   \(a\)   |     \(b\)     |
+| Data/Likelihood |   \(y\)   |    \(n-y\)    |
+|    Posterior    | \(a + y\) | \(b + n - y\) |
+
+
+## Example
+
+```{r, echo = TRUE, warning = FALSE, message = FALSE}
+ab <- c(3.06, 2.56)
+yny <- c(12, 8)
+(ab_new <- ab + yny)
+```
+
+## Example cont'd
+
+The function ```beta_prior_post()``` in the ```ProbBayes``` R package\index{ProbBayes R package} plots the prior and posterior Beta curves together on one graph.
+
+```{r, echo = FALSE, fig.height = 2.5, fig.width = 4}
+beta_prior_post(ab, ab_new)
+```
+
+## Example cont'd
+
+
+
+- Compare the prior and posterior Beta curves using the respective means
+    - The mean of a Beta(a, b) distribution is a / (a + b)
+    - Prior mean: 3.06 / (30.6 + 2.56) =  0.544
+    - Sample mean: 12 / 20 = 0.6
+    - Posterior mean: 15.06 / (15.06 + 10.56) =  0.588
+    
+- Compare the spreads of the two curves
+    - Spread of prior is wider 
+    - The data helps sharpen the belief about the parameter of interest
+    
+## Summary
+
+- Conjugate prior: beta prior to beta posterior with binomial sampling model
+
+- Choose a prior that matches one's belief, not one that is convenient to use

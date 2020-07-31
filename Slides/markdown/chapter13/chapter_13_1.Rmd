@@ -1,0 +1,53 @@
+---
+title: "Chapter 13.1 Introduction"
+author: "Jim Albert and Monika Hu"
+date: "Chapter 13 Case Studies"
+output:
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Three Case Studies
+
+This chapter provides several illustrations of Bayesian modeling that extend some of the models described in earlier chapters.
+
+- Authorship of the Federalist papers.
+
+- Learning about the career trajectory of a baseball player.
+
+- A latent class model for a multiple choice exam with two classes of students.
+
+## Federalist Paper Study
+
+- Mosteller and Wallace (1963) explore the frequencies of word use in the well-known Federalist Papers.
+
+- Object was to determine the authorship between Alexander  Hamilton and James Madison.
+
+- What is a suitable sampling distribution for word use?
+
+- What are good ways of comparing the word use of several authors?
+
+## Career Trajectory Study
+
+- In sports, a career trajectory is the pattern of increase and decrease in the performance of a player.
+
+- A baseball player is  believed to reach a level of peak performance at age of 30.
+
+- Use  a hierarchical model to simultaneously estimate the career trajectories for a group of baseball players using on-base percentage as the measure of performance
+
+## Latent Class Study
+
+- A class is taking a multiple choice exam where there are two groups of students.  
+
+- Some students are well-prepared and other students have not studied and will essentially guess at the answers.
+
+- Introduce a latent class model that assumes that the class consists of two groups of students with different success rates and the group ids of the students are unknown. 
+
+- We learn about the location of the two success rates and the group classifications of the students.  
+
+- Use this latent class framework, learn about the true author identity in the Federalist Papers example using frequencies of particular filler words.
+
+
+
+
+

@@ -1,0 +1,136 @@
+---
+title: "Chapter 6.2 Multinomial Distribution"
+author: "Jim Albert and Monika Hu"
+date: "Chapter 6 Joint Probability Distributions"
+output:
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## Introduction
+
+- Suppose one rolls the usual six-sided die where one side shows 1, two sides show 2, and three sides show 3.  
+
+- One rolls this die ten times -- what is the chance that one will observe three 1's and five 2's?
+ 
+- This situation resembles the coin-tossing experiment described in Chapter 4.  
+
+- The difference is that the coin-tossing experiment had only two possible outcomes on a single trial\index{trial}, and here there are three outcomes on a single die roll, 1, 2, and 3.
+ 
+## A Multinomial Experiment
+
+- Suppose a random experiment consists of a sequence of $n$ independent trials where there are $k$ possible outcomes on a single trial where $k \ge 2$.  
+
+- Denote the possible outcomes as 1, 2, ..., $k$, and let $p_1, p_2, ..., p_k$ denote the associated probabilities.
+
+- Let $X_1$, $X_2$, ..., $X_k$ denote the number of 1s, 2s, ..., $k$s observed in the $n$ trials
+
+- The vector of outcomes $X$ = $(X_1, X_2, ..., X_n)$ has a Multinomial distribution\ with sample size $n$ and vector of probabilities $p = (p_1, p_2, ..., p_k)$.
+
+## Die Example
+
+- Each die roll has $k = 3$ possible outcomes and the associated vector of probabilities is $p = (1/6, 2/6, 3/6)$. 
+
+- The number of observed 1s, 2s, 3s in $n = 10$ trials, $X = (X_1, X_2, X_3)$ has a Multinomial distribution with parameters $n$ and $p$.
+
+-  The probability that $X_1 = x_1, ..., X_k = x_k$ has the general form
+$$
+f(x_1, ..., x_k) = \left(\frac{n!}{n_1! ... n_k!}\right) \prod_{j=1}^k p_j^{x_j},
+$$
+ where $x_j = 0, 1, 2, ..., j = 1, ... k$ and $\sum_{j=1}^n x_j = n$.
+ 
+## Computing a probability
+
+- One has $n = 10$ trials and the outcome ``three 1's and five 2's" is equivalent to the outcome $X_1 = 3, X_2 = 5$.  
+
+- Note that the number of 3s $X_3$ is not random since we know that $X_1 + X_2 + X_3 = 10$. The probability vector is $p = (1/6, 2/6, 3/6)$.  
+
+- By substitution, we get
+
+ $$
+ P(X_1 = 3, X_2 = 5, X_3 = 2) = \left(\frac{10!}{3! \, 5! \, 2!}\right) \left(\frac{1}{6}\right)^3
+ \left(\frac{2}{6}\right)^5 \left(\frac{3}{6}\right)^2\\ = 0.012
+ $$
+
+## Another probability
+ 
+- Other probabilities can be found by summing the joint Multinomial pmf  over sets of interest.  
+
+- Suppose one is interested in computing the probability that the number of 1s exceeds the number of 2's in our ten dice rolls.  
+
+- One is interested in the probability $P(X_1 > X_2)$ which is given by
+ $$
+ P(X_1 > X_2) = \sum_{x_1 > x_2}  \left(\frac{10!}{3! \, 5! \, 2!}\right) \left(\frac{1}{6}\right)^{x_1}
+ \left(\frac{2}{6}\right)^{x_2} \left(\frac{3}{6}\right)^{10 - x_1 - x_2},
+$$
+where one is summing over all of the outcomes $(x_1, x_2)$ where $x_1 > x_2$.
+
+## Marginal distributions
+
+- One attractive feature of the Multinomial distribution is that the marginal distributions have familiar functional forms.  
+
+- In the dice roll example, suppose one is interested only in $X_1$, the number of 1s in ten rolls of our die.  
+
+- One  obtains the marginal probability distribution of $X_1$ directly by summing out the other variables from the joint pmf of $X_1$ and $X_2$.  
+
+- For example, one  finds, say $P(X_1 = 2)$, by summing the joint probability values over all ($x_1, x_2$) pairs where $x_1 = 2$:
+$$
+P(X_1 = 2) = \sum_{x_2, x_1 + x_2 \le 10} f(x_1, x_2).
+$$
+
+## Another way of thinking about this
+
+- In each die roll, suppose one records if one gets a one or not.  
+
+- Then $X_1$, the number of ones in $n$ trials, will be Binomial distributed with parameters $n$ and $p = 1/6$.  
+
+- Using a similar argument, $X_2$, the number of twos in $n$ trials, will be Binomial with $n$ trials and $p = 2/6$.
+
+## Conditional distributions
+
+- One applies the knowledge about marginal distributions to compute conditional distributions in the Multinomial situation.  
+
+- Suppose that one is given that $X_2 = 3$ in $n = 10$ trials. What can one say about the probabilities of $X_1$?
+
+- One  uses the conditional pmf definition to compute the conditional probability $P(X_1 = x \mid X_2 = 3)$.  
+$$
+P(X_1 = x \mid X_2 = 3) = \frac{P(X_1 = x, X_2 = 3)}{P(X_2 = 3)}.
+$$
+
+## Conditional distributions
+
+- Think about possible values for $X_1$.  
+
+- Since one has $n = 10$ rolls of the die and we know that we observe $X_2 = 3$ (three twos), the possible values of $X_1$ can be 0, 1, ..., 7.  
+
+- For these values, we have
+$$
+P(X_1 = x \mid X_2 = 3) = \frac{P(X_1 = x, X_2 = 3)}{P(X_2 = 3)}.
+$$
+- The numerator is the Multinomial probability and since $X_2$ and the denominator is a Binomial probability.  
+
+## Calculation
+
+- Making the substitutions, one has
+$$
+P(X_1 = x \mid X_2 = 3) = \frac{\left(\frac{10!}{x! \, 3! \, (10 - x - 3)!}\right) \left(\frac{1}{6}\right)^x
+ \left(\frac{2}{6}\right)^3 \left(\frac{3}{6}\right)^{10 - x - 3}}
+ {{10 \choose 3} \left(\frac{2}{6}\right) ^3 \left(1 - \frac{2}{6}\right) ^{10 - 3}}. 
+ $$
+ - After some simplification, one obtains
+ $$
+ P(X_1 = x \mid X_2 = 3) = {7 \choose x} \left(\frac{1}{4}\right)^x \left(1 - \frac{1}{4}\right)^{7 - x}, 
+ \, \, x = 0, ..., 7.
+ $$ 
+ which is a Binomial distribution with 7 trials and probability of success 1/4.
+ 
+ 
+ 

@@ -1,0 +1,58 @@
+---
+title: Chapter 3.2 Independence
+author: Jim Albert and Monika Hu
+date: Chapter 3 Conditional Probability
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Independent Events
+
+- One says that events $A$ and $B$ are independent if the knowledge of event $A$ does not change the probability of the event $B$.  
+
+- Using symbols
+$$
+P(B \mid A) = P(B).
+$$
+
+## Rolls of Two Dice
+
+- Consider an example where one rolls a red die and a white die -- the 36 possible outcomes of rolling the two dice are shown below. 
+
+
+|           |       |     | Red    |  Die     |      |      |     |
+| :-------: | :---: | :-: | :-: | :---: | :--: | :--: | :-: |
+|           |       | One | Two | Three | Four | Five | Six |
+|           |  One  |  x  |  x  |   x   |  x   |  x   |  x  |
+|           |  Two  |  x  |  x  |   x   |  x   |  x   |  x  |
+| White Die | Three |  x  |  x  |   x   |  x   |  x   |  x  |
+|           | Four  |  x  |  x  |   x   |  x   |  x   |  x  |
+|           | Five  |  x  |  x  |   x   |  x   |  x   |  x  |
+|           |  Six  |  x  |  x  |   x   |  x   |  x   |  x  |
+
+
+## Consider the following three events:
+
+- $S$ = the sum of the two rolls is 7
+- $E$ = the red die is an even number
+- $D$ = the rolls of the two dice are different
+
+
+## Are events $S$ and $E$ independent?
+
+1. First one finds the probability one rolls a sum equal to 7.   There are 36 outcomes and 6 outcomes results in a sum of 7, so $P(S) = 6 / 36$.
+
+2. Next find $P(S \mid E)$.  Given that the red die is an even number (event $E$), note that there are 18 outcomes where $E$ occurs.  Of these 18 outcomes, there are 3 outcomes where the sum is equal to 7.  So $P(S \mid E) = 3 / 18$.
+
+3. Note $P(S \mid E) = P(S)$, so events $S$ and $E$ are independent.  Knowing the red die is even does not change one's probability of rolling a 7.
+
+
+## Are events $S$ and $D$ independent?
+
+- To see if these two events are independent, one computes $P(S \mid D)$ and checks if $P(S \mid D) = P(S)$.  
+
+- One can show that $P(S \mid D) = 6 / 30$.   
+
+- This probability is not equal to $P(S)$ so $S$ and $D$ are not independent events.
+
