@@ -1,0 +1,87 @@
+---
+title: Chapter 11.4 A Weakly Informative Prior
+author: Jim Albert and Monika Hu
+date: Chapter 11 Simple Linear Regression
+output: 
+    beamer_presentation: default
+    logo: ProbBayes_cover.jpg
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(runjags)
+library(coda)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## Priors: review
+
+- What does prior distribution do?
+
+- What is the relationship between the prior and the posterior?
+
+- What kinds of prior distributions we have used before?
+
+- What prior distribution do you have in mind for the parameters in the simple linear regression model: $(\beta_0, \beta_1, \sigma)$?
+
+## When limited prior information is known
+
+- Limited prior information about: the location of the regression parameters or the standard deviation
+
+- To implement the Bayesian approach, we need to assign a prior distribution
+
+- When limited prior information is known, we can assign a prior that has little impact on the posterior distribution: a weakly informative prior
+
+## A weakly informative prior: jointly and marginally
+
+- Assume independence among the parameters $(\beta_0, \beta_1, \sigma)$
+\begin{equation}
+\pi(\beta_0, \beta_1, \sigma) = \pi(\beta_0, \beta_1) \pi(\sigma)
+\end{equation}
+
+- A weakly informative prior on each parameter 
+
+## Prior on the intercept $\beta_0$ and slope $\beta_1$
+
+- Assume independence between $\beta_0$ and $\beta_1$:
+
+\begin{equation}
+\pi(\beta_0, \beta_1) = \pi(\beta_0) \pi(\beta_1)
+\end{equation}
+
+- Use a normal prior for each
+\begin{eqnarray}
+\beta_0 &\sim& \textrm{Normal}(\mu_0, s_0) \\
+\beta_1 &\sim& \textrm{Normal}(\mu_1, s_1)
+\end{eqnarray}
+
+\pause
+
+- The choice of the standard deviation $s_j$ in the normal prior reflects how confident the person believes in a prior guess of $\beta_j$
+
+- If we have little information about the location of a regression parameter: choose a large value for the prior standard deviation $s_j$, e.g. Normal(0, 100)
+
+
+
+## Prior on sampling standard deviation $\sigma$
+
+\begin{equation}
+Y_i \mid \mu_i, \sigma \overset{ind}{\sim} \textrm{Normal}(\mu_i, \sigma)
+\end{equation}
+
+- $\sigma$ represents the variability of the house price about the regression line
+
+- It is typically hard to specify informative beliefs about a standard deviation
+
+\pause
+
+- In Chapter 9 and Chapter 10, we a weakly informative prior for the standard deviation $\sigma$
+
+- Here, we can also do 
+\begin{equation}
+\phi = 1/\sigma^2 \sim \textrm{Gamma}(1, 1)
+\end{equation}

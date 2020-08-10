@@ -1,0 +1,129 @@
+---
+title: Chapter 3.5-3.6 Definition and the Multiplication Rule
+author: Jim Albert and Monika Hu
+date: Chapter 3 Conditional Probability
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Introduction
+
+-- There is a formal definition of conditional probability .
+
+- Suppose one has two events $A$ and $B$ where the probability of event $B$ is positive, that is $P(B) > 0.$  
+
+- Then the probability of $A$ given $B$ is defined as the quotient
+$$
+P(A \mid B) = \frac{P(A \cap B)}{P(B)}.
+$$
+ 
+## How many boys?
+
+- Suppose a couple has four children.  One is told that this couple has at least one boy.   What is the chance that they have exactly two boys?
+
+- If one lets $L$ be the event "at least one boy" and $B$ be the event "have two boys", one wishes to find $P(B \mid L).$
+
+## The sample space
+
+- Represent the genders of the four children (from youngest to oldest) as a sequence of four letters.
+
+- There are 16 possible outcomes of four births
+
+|          |          |          |          |
+| :------: | :------: | :------: | :------: |
+| \(BBBB\) | \(BGBB\) | \(GBBB\) | \(GGBB\) |
+| \(BBBG\) | \(BGBG\) | \(GBBG\) | \(GGBG\) |
+| \(BBGB\) | \(BGGB\) | \(GBGB\) | \(GGGB\) |
+| \(BBGG\) | \(BGGG\) | \(GBGG\) | \(GGGG\) |
+
+- If one assumes that boys and girls are equally likely, each outcome is assigned a probability of 1/16.  
+
+## Computation
+
+- Applying the definition of conditional probability, one has
+ $$
+P(B \mid L) = \frac{P(B \cap L)}{P(L)}.
+$$
+
+- There are 15 outcomes in the set $L$, and 6 outcomes where both events $B$ and $L$ occur.  
+
+- So using the definition
+
+$$
+P(B \mid L) = \frac{6/16}{15/16} = \frac{6}{15}.
+$$
+
+
+## The multiplication rule
+
+
+- If one takes the conditional probability definition and multiplies both sides of the equation by $P(B)$, one obtains the multiplication rule
+
+$$
+P(A \cap B) = P(B) P(A \mid B).
+$$
+ 
+## Choosing balls from a random bowl
+
+- Suppose one has two bowls -- Bowl 1 is filled with one white and 5 black balls, and Bowl 2 has 4 white and 2 black balls.  
+
+- One first spins the spinner below that determines which bowl to select, and then selects one ball from the bowl. 
+
+- What the chance that the ball one selects is white?
+ 
+## The experiment
+
+ ```{r,  echo = FALSE, out.width = 300}
+knitr::include_graphics("chapter3/bowlspinner.png")
+```
+
+## A tree diagram
+
+ 
+ ```{r,  echo = FALSE, out.width = 180}
+knitr::include_graphics("chapter3/tree5.png")
+```
+
+## Add probabilities to diagram
+
+- Since one quarter of the spinner region is "Bowl 1", the chance of choosing Bowl 1 is 1/4 and so the chance of choosing Bowl 2 is 3/4
+
+- Also one knows that if  Bowl 1 is selected, the chances of choosing a white ball and a black ball are respectively 1/6 and 5/6  
+
+- Also, if one selects Bowl 2, the conditional probabilities of selecting a white ball and a black ball are given by $P$(white $\mid$ Bowl 2) = 4/6 and $P$(black $\mid$ Bowl 2) = 2/6
+
+## Labeled tree diagram
+
+```{r,  echo = FALSE, out.width = 180}
+knitr::include_graphics("chapter3/tree6.png")
+```
+
+## Computing probabilities
+ 
+-  What is the probability of selecting Bowl 1 and selecting a white ball?  
+
+- By the multiplication rule
+
+\begin{align*} 
+P({\rm Bowl \, 1} \cap {\rm white \, ball}) &=  P({\rm Bowl \, 1}) P({\rm white \, ball} \mid {\rm Bowl \, 1})
+ \\ 
+ &=  \frac{1}{4} \times \frac{1}{6} = \frac{1}{24}.
+\end{align*}
+ 
+- One is just multiplying probabilities along the top branch of the tree.
+
+## Computing probabilities
+
+- What is the probability of selecting a white ball?  
+
+- There are two ways of selecting a white depending on which bowl is selected.  One can either (1) select Bowl 1 and choose a white ball or (2) select Bowl 2 and choose a white ball.   
+
+- One finds the probability of each of the two outcomes and add the probabilities
+
+\begin{align*}
+P({\rm white \, ball}) & =  P({\rm Bowl \, 1} \cap {\rm white \, ball}) + P({\rm Bowl \, 2} \cap {\rm white \, ball}) \\ 
+& =  \frac{1}{4} \times \frac{1}{6} + \frac{3}{4} \times \frac{4}{6} = \frac{13}{24}.
+\end{align*}
+
+

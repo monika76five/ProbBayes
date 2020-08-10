@@ -1,0 +1,391 @@
+---
+title: Chapter 10.2 Hierarchical Normal Modeling
+author: Jim Albert and Monika Hu
+date: Chapter 10 Bayesian Hierarchical Modeling
+output: 
+    beamer_presentation: default
+    logo: ProbBayes_cover.jpg
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(runjags)
+library(coda)
+crcblue <- "#2905a1"
+```
+
+## Example: ratings of animation movies
+
+- MovieLens
+
+- A sample: eight different animation movies released in 2010; 55 ratings
+
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+MovieRatings = read.csv("2010_animation_ratings.csv", header = TRUE, sep = ",")
+
+MovieRatings %>%
+  mutate(Title = as.character(title),
+         Title = recode(Title,
+                  "Shrek Forever After (a.k.a. Shrek: The Final Chapter) (2010)" = "Shrek Forever",
+                  "How to Train Your Dragon (2010)" = "Dragon",
+                  "Toy Story 3 (2010)" = "Toy Story 3",
+                  "Tangled (2010)" = "Tangled",
+                  "Despicable Me (2010)" = "Despicable Me",
+                  "Legend of the Guardians: The Owls of Ga'Hoole (2010)" = "Guardians",
+                  "Megamind (2010)" = "Megamind",
+                  "Batman: Under the Red Hood (2010)" = "Batman")) ->
+           MovieRatings
+```
+
+```{r, echo = FALSE, fig.height = 2.5, fig.width = 4}
+ggplot(MovieRatings, aes(Title, rating)) +
+  geom_jitter(width = 0.2,
+              size = 1, color = crcblue) +
+  coord_flip() +
+  increasefont(10) +
+  ylab("Rating")
+```
+
+
+## Example: ratings of animation movies cont'd
+
+
+| Movie Title                | Mean |   SD |  N |
+| :------------------------- | ---: | ---: | -: |
+| Batman: Under the Red Hood | 5.00 |      |  1 |
+| Despicable Me              | 3.72 | 0.62 |  9 |
+| How to Train Your Dragon   | 3.41 | 0.86 | 11 |
+| Legend of the Guardians    | 4.00 |      |  1 |
+| Megamind                   | 3.38 | 1.31 |  4 |
+| Shrek Forever After        | 4.00 | 1.32 |  3 |
+| Tangled                    | 4.20 | 0.89 | 10 |
+| Toy Story 3                | 3.81 | 0.96 | 16 |
+
+- variability in the sample sizes
+
+- to improve the estimate of mean rating by using rating information from similar movies
+
+## A hierarchical normal model with random $\sigma$
+
+- $Y_{ij}$ denotes the $i$-th rating for the $j$-th movie title
+
+- Sampling model: normal
+
+- Assume a movie-specific mean $\mu_j$ and a common and random $\sigma$
+
+\pause
+ 
+- Sampling, for $j = 1, \cdots, 8$ and $i = 1, \cdots, n_j$:
+\begin{equation}
+Y_{ij} \mid \mu_j, \sigma \overset{i.i.d.}{\sim} \textrm{Normal}(\mu_j, \sigma)
+\end{equation}
+
+- Prior\index{prior} for $\mu_j$, $j = 1, \cdots, 8$:
+\begin{equation}
+\mu_j \mid \mu, \tau \sim \textrm{Normal}(\mu, \tau)
+\end{equation}
+
+## Pooling information across movies
+
+\begin{equation*}
+\mu_j \mid \mu, \tau \sim \textrm{Normal}(\mu, \tau)
+\end{equation*}
+
+- Large value of $\tau$: 
+    - the $\mu_j$'s are very different from each other *a priori*
+    - modest pooling of the eight sets of ratings
+    
+- Small value of $\tau$:
+    - the $\mu_j$'s are very similar to each other *a priori*
+    - large pooling of the eight sets of ratings
+    
+\pause
+
+- Simultaneously estimate:
+    - a mean for each movie (the $\mu_j$'s) 
+    - the variationamong the movies by the parameter $\tau$
+
+## Hyperparameters
+
+\begin{equation*}
+\mu_j \mid \mu, \tau \sim \textrm{Normal}(\mu, \tau)
+\end{equation*}
+
+- $\mu$ and $\tau$: hyperparameters
+
+- Treat as random (we are unsure about the degree of pooling)
+
+- e.g. weakly informative prior distribution
+
+## Complete model specification
+
+- Sampling: for $j = 1, \cdots, 8$ and $i = 1, \cdots, n_j$:
+\begin{equation}
+Y_{ij} \mid \mu_j, \sigma \overset{i.i.d.}{\sim} \textrm{Normal}(\mu_j, \sigma)
+\end{equation}
+
+- Prior for $\mu_j$, Stage 1:  $\mu_j$, $j = 1, \cdots, 8$:
+\begin{equation}
+\mu_j \mid \mu, \tau \sim \textrm{Normal}(\mu, \tau)
+\end{equation}
+
+- Prior for $\mu_j$, Stage 2:
+\begin{equation}
+\mu, \tau \sim \pi(\mu, \tau)
+\end{equation}
+
+- Prior for $\sigma$:
+\begin{eqnarray}
+1/\sigma^2 \mid a_{\sigma}, b_{\sigma}  &\sim& \textrm{Gamma}(a_{\sigma}, b_{\sigma})
+\end{eqnarray}
+
+## Disucssion on sharing
+
+- Two-stage prior for \{$\mu_j$\} vs shared $\sigma$
+
+- Differences?
+
+## Graphical representation of the hierarchical model
+
+
+```{r, echo = FALSE, out.width = 360}
+knitr::include_graphics("figures/treediagram1.png")
+```
+
+## Second-stage prior
+
+
+- $\mu$ and $\tau$ are hyperparameters for the normal prior distribution for \{$\mu_j$\} 
+
+- hyperparameters and hyperpriors
+
+- The hyperprior for $\mu$ and $\tau$:
+\begin{eqnarray}
+\mu \mid \mu_0, \gamma_0 &\sim& \textrm{Normal}(\mu_0, \gamma_0) \\
+1/\tau^2 \mid a, b &\sim& \textrm{Gamma}(a_{\tau}, b_{\tau})
+\end{eqnarray}
+
+
+\pause
+
+- e.g.$\mu_0 = 3$ and $\gamma_0 = 1$ 
+
+- e.g. $a_{\sigma} = b_{\sigma} = 1$
+
+## Inference through MCMC
+
+- Sampling:  for $j = 1, \cdots, 8$ and $i = 1, \cdots, n_j$:
+\begin{equation}
+Y_{ij} \mid \mu_j, \sigma_j \overset{i.i.d.}{\sim} \textrm{Normal}(\mu_j, \sigma_j)
+\end{equation}
+
+- Prior for $\mu_j$, Stage 1:  for $j = 1, \cdots, 8$:
+\begin{equation}
+\mu_j \mid \mu, \tau \sim \textrm{Normal}(\mu, \tau)
+\end{equation}
+
+- Prior for $\mu_j$, Stage 2:  the hyperpriors:
+\begin{eqnarray}
+\mu &\sim& \textrm{Normal}(3, 1) \\
+1/\tau^2  &\sim& \textrm{Gamma}(1, 1)
+\end{eqnarray}
+
+- Prior for $\sigma$:
+\begin{equation}
+1/\sigma^2  \sim \textrm{Gamma}(1, 1) 
+\end{equation}
+
+## JAGS step 1: describe the model by a script
+
+
+```{r size = "footnotesize"}
+modelString <-"
+model {
+## sampling
+for (i in 1:N){
+   y[i] ~ dnorm(mu_j[MovieIndex[i]], invsigma2)
+}
+## priors and hyperpriors
+for (j in 1:J){
+   mu_j[j] ~ dnorm(mu, invtau2)
+}
+invsigma2 ~ dgamma(a_s, b_s)
+sigma <- sqrt(pow(invsigma2, -1))
+mu ~ dnorm(mu0, g0)
+invtau2 ~ dgamma(a_t, b_t)
+tau <- sqrt(pow(invtau2, -1))
+}
+"
+```
+
+
+## JAGS step 2: define the data and prior parameters
+
+
+```{r size = "footnotesize"}
+y <- MovieRatings$rating      
+MovieIndex <- MovieRatings$Group_Number      
+N <- length(y)  
+J <- length(unique(MovieIndex)) 
+the_data <- list("y" = y, "MovieIndex" = MovieIndex, 
+                 "N" = N, "J" = J,
+                 "mu0" = 3, "g0" = 1,
+                 "a_t" = 1, "b_t" = 1,
+                 "a_s" = 1, "b_s" = 1)
+```
+
+## JAGS step 2: define the data and prior parameters cont'd
+
+```{r message = FALSE, size = "footnotesize", warning = FALSE, results = 'hide'}
+posterior <- run.jags(modelString,
+                      n.chains = 1,
+                      data = the_data,
+                      monitor = c("mu", "tau", 
+                                  "mu_j", "sigma"),
+                      adapt = 1000,
+                      burnin = 5000,
+                      sample = 5000)
+```
+
+## MCMC diagnostics and summarization
+
+```{r, fig.height = 3, fig.width = 4.5}
+plot(posterior, vars = "tau")
+```
+
+## MCMC diagnostics and summarization cont'd
+
+```{r message = FALSE, warning = FALSE, echo = FALSE}
+print(posterior, digits = 3)                                                      
+```
+
+## Inferences
+
+- "How to Train Your Dragon" (corresponding to $\mu_1$) and "Megamind"  (corresponding to $\mu_7$) have the lowest average ratings with short 90\% credible intervals, (2.96, 3.99) and (2.74, 4.27) respectively
+
+- "Legend of the Guardians: The Owls of Ga'Hoole" (corresponding to $\mu_6$) also has a low average rating but with a wider 90\% credible interval (2.70, 4.99)
+
+
+- "Batman: Under the Red Hood" (corresponding to $\mu_5$): average rating $\mu_5$ has the largest median value among all $\mu_j$'s, at 4.15, and also a wide 90\% credible interval, (3.09, 5.43)
+
+## Inferences cont'd
+
+- The differences in the width of the credible intervals stem from the sample sizes:    
+    - "How to Train Your Dragon" (11)
+    - "Megamind" (4)
+    - ``Legend of the Guardians: The Owls of Ga'Hoole" (1) 
+    - The smaller the sample size, the larger the variability in the inference, even if one pools information across groups
+
+
+## Shrinkage
+
+- The two-stage prior specifies a shared prior $\textrm{Normal}(\mu, \tau)$ for all $\mu_j$'s 
+    - estimation of the movie mean ratings (the $\mu_j$'s)
+    - estimation of the variation among the movie mean ratings through the parameters $\mu$ and $\tau$
+    
+- The posterior mean of the rating for a particular movie $\mu_j$ shrinks the observed mean rating towards an average rating
+
+
+<!-- \begin{figure}[htb] -->
+<!-- \begin{center} -->
+<!-- \includegraphics[scale=0.4]{figures/chapter10/MovieLensPoolingb.pdf} -->
+<!-- \caption{\label{fig:MovieLensPooling} Shrinkage plot of sample means and posterior means of movie ratings for eight movies.} -->
+<!-- \end{center} -->
+<!-- \end{figure} -->
+
+## Shrinkage cont'd
+
+```{r, fig.height = 3, fig.width = 4.5, echo = FALSE}
+Post_Means <- summary(posterior)[, 4]
+
+MovieRatings %>% group_by(Group_Number) %>%
+  summarize(Title = first(title),
+            N = n(), M = mean(rating),
+            SE = sd(rating) / sqrt(N),
+            .groups = "drop") -> Ind_Stats
+
+Means1 <- data.frame(Type = "Sample", Mean = Ind_Stats$M)
+Means2 <- data.frame(Type = "Posterior", Mean =
+                       Post_Means[3:(4 + J - 2)])
+Means1$Title <- c("Dragon", "Toy Story 3", "Shrek Forever",
+                  "Despicable Me", "Batman", "Guardians",
+                  "Megamind", "Tangled")
+Means2$Title <- c("Dragon", "Toy Story 3", "Shrek Forever",
+                  "Despicable Me", "Batman", "Guardians",
+                  "Megamind", "Tangled")
+ggplot(rbind(Means1, Means2),
+       aes(Type, Mean, group=Title)) +
+  geom_line(color = crcblue) + geom_point() +
+  annotate(geom = "text",
+           x = 0.75,
+           y = Means1$Mean + c(0.05, 0, 0.05, 0,
+                               0, -0.05, 0, 0),
+           size = 3,
+           label = Means1$Title) +
+  increasefont(Size = 10)
+```
+
+## Shrinkage cont'd
+
+- The shrinkage effect is obvious for the movie "Batman: Under the Red Hood"
+
+- A large shrinkage is desirable for a movie with a small number of ratings such as "Batman: Under the Red Hood"
+
+- For a movie with a small sample size, information about other ratings of similar movies helps to produce a more reasonable estimate at the ``true" average movie rating. 
+
+- By pooling ratings across movies, one is able to estimate the standard deviation $\sigma$ of the ratings 
+    - without this pooling, one would be unable to estimate the standard deviation for a movie with only one rating
+
+## Sources of variability
+
+- Two sources for the variability among the observed $Y_{ij}$'s
+
+\begin{eqnarray}
+Y_{ij} &\overset{i.i.d.}{\sim} \textrm{Normal}(\mu_j, \sigma) \,\,\, \text{[within-group variability]}\\
+\mu_j \mid \mu, \tau &\sim \textrm{Normal}(\mu, \tau) \,\,\, \text{[between-group variability]} 
+\end{eqnarray} 
+
+
+- The Bayesian posterior inference in the hierarchical model is able to compare these two sources of variability, taking into account 
+    - the prior belief
+    - the information from the data
+
+## Sources of variability cont'd
+
+- To compare these two sources of variation
+\begin{equation}
+R = \frac{\tau^2}{\sigma^2 + \tau^2}
+\end{equation}
+
+- Calculate $R$ from the posterior samples of $\sigma$ and $\tau$ 
+
+- $R$ represents the fraction of the total variability in the movie ratings due to the differences between groups
+    - if $R$ is close to 1, most of the total variability is attributed to the between-group variability
+    - if $R$ is close to 0, most of the variation is within groups and there is little significant differences between groups
+
+## Sources of variability cont'd
+
+```{r size = "footnotesize"}
+tau_draws <- as.mcmc(posterior, vars = "tau")
+sigma_draws <- as.mcmc(posterior, vars = "sigma")
+R <- tau_draws ^ 2 / (tau_draws ^ 2 + sigma_draws ^ 2)
+quantile(R, c(0.025, 0.975))
+```
+
+- A 95\% credible interval for $R$ 
+
+- The variation between the mean movie rating titles is overall smaller than the variation of the ratings within the movie titles in this example
+
+## Sources of variability cont'd
+
+```{r, fig.height = 2, fig.width = 4, warning = FALSE, size = "footnotesize"}
+df = as.data.frame(R)
+ggplot(df, aes(x=R)) +
+  geom_density(size = 1, color = crcblue) +
+  increasefont()
+```
+

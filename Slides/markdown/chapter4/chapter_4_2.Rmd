@@ -1,0 +1,89 @@
+---
+title: Chapter 4.2 Random Variables
+author: Jim Albert and Monika Hu
+date: Chapter 4 Discrete Distributions
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## A Coin Flipping Game
+
+- Suppose that Peter and Paul play a simple coin game.  A coin is tossed.  If the coin lands heads, then Peter receives \$2 from Paul; otherwise Peter has to pay \$2 to Paul.  
+
+- The game is played for a total of five coin flips.
+After the five flips, what is Peter's net gain (in dollars)?
+
+- There are 32 possibilities for the five flips.
+
+|           |           |           |           |
+| :-------: | :-------: | :-------: | :-------: |
+| \(HHHHH\) | \(HTHHH\) | \(THHHH\) | \(TTHHH\) |
+| \(HHHHT\) | \(HTHHT\) | \(THHHT\) | \(TTHHT\) |
+| \(HHHTH\) | \(HTHTH\) | \(THHTH\) | \(TTHTH\) |
+| \(HHHTT\) | \(HTHTT\) | \(THHTT\) | \(TTHTT\) |
+| \(HHTHH\) | \(HTTHH\) | \(THTHH\) | \(TTTHH\) |
+| \(HHTHT\) | \(HTTHT\) | \(THTHT\) | \(TTTHT\) |
+| \(HHTTH\) | \(HTTTH\) | \(THTTH\) | \(TTTTH\) |
+| \(HHTTT\) | \(HTTTT\) | \(THTTT\) | \(TTTTT\) |
+
+## A Random Variable
+
+- For each possible outcome of the flips, say $HTHHT$, there will be a corresponding net gain for Peter.  
+
+- For this outcome, Peter won three times and lost twice, so his net gain is $3(2) - 2(2) = 2$ dollars. 
+
+- The net gain is an example of a __random variable__,  a number that is assigned to each outcome of the random experiment.  
+
+- Use a capital letter $G$ to denote Peter's gain in this experiment.  
+
+## Assign Random Variable to All 32 Outcomes
+
+|                 |                 |                 |                  |
+| :-------------- | :-------------- | :-------------- | :--------------- |
+| \(HHHHH, G=10\) | \(HTHHH, G=6\)  | \(THHHH, G=6\)  | \(TTHHH, G=2\)   |
+| \(HHHHT, G=6\)  | \(HTHHT, G=2\)  | \(THHHT, G=2\)  | \(TTHHT, G=-2\)  |
+| \(HHHTH, G=6\)  | \(HTHTH, G=2\)  | \(THHTH, G=2\)  | \(TTHTH, G=-2\)  |
+| \(HHHTT, G=2\)  | \(HTHTT, G=-2\) | \(THHTT, G=-2\) | \(TTHTT, G=-6\)  |
+| \(HHTHH, G=6\)  | \(HTTHH, G=2\)  | \(THTHH, G=2\)  | \(TTTHH, G=-2\)  |
+| \(HHTHT, G=2\)  | \(HTTHT, G=-2\) | \(THTHT, G=-2\) | \(TTTHT, G=-6\)  |
+| \(HHTTH, G=2\)  | \(HTTTH, G=-2\) | \(THTTH, G=-2\) | \(TTTTH, G=-6\)  |
+| \(HHTTT, G=-2\) | \(HTTTT, G=-6\) | \(THTTT, G=-6\) | \(TTTTT, G=-10\) |
+
+## Comments
+
+- Possible gains for Peter are -10, -6, -2, 2, 6, and 10 dollars.  
+
+- Table gives all possible values of $G$.
+
+ 
+| Gain \(g\) (dollars) | Number of outcomes | \(P(G = g)\) |
+| :------------------: | :----------------: | :----------: |
+|       \(-10\)        |                    |              |
+|        \(-6\)        |                    |              |
+|        \(-2\)        |                    |              |
+|          2           |                    |              |
+|          6           |                    |              |
+|          10          |                    |              |
+
+## Finding Probabilities
+
+
+- What is the probability that Peter gains $6 in this game?  
+
+- Looking at the table of outcomes, one sees that Peter won \$6 in five of the outcomes.  Since each outcome has probability 1/32,  the probability of Peter winning $6 is 5/32.
+
+- This process is continued for all of the possible values of $G$ -- obtain a probability distribution for $G$.  
+
+| Gain \(g\) (dollars) | Number of outcomes | \(P(G = g)\) |
+| :------------------: | :----------------: | :----------: |
+|       \(-10\)        |         1          |     1/32     |
+|        \(-6\)        |         5          |     5/32     |
+|        \(-2\)        |         10         |    10/32     |
+|          2           |         10         |    10/32     |
+|          6           |         5          |     5/32     |
+|          10          |         1          |     1/32     |
+
+
+
+

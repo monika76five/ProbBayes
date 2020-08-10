@@ -1,0 +1,194 @@
+---
+title: Chapter 1.6 More Formal Look at Probability
+author: Jim Albert and Monika Hu
+date: Chapter 1 Probability, A Measure of Uncertainty
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Events and Event Operations
+
+- Suppose that the sample space (collection of all possible outcomes) for our random experiment is $S$.  
+
+- An event, represented by a capital letter such as $A$, is a subset of $S$.  Events, like sets, can be combined in various ways described as follows.
+
+## Some Event Operations
+
+1. $A \cap B$ is the event that both A and B occur (the intersection\index{intersection} of the two events)
+
+2. $A \cup B$ is the event that either A or B occur (the union\index{union} of the two events)
+
+3. $\bar A$ (or $A^c$) is the event that A does not occur (the complement\index{complement} of the event A)
+
+## Example of Event Operations
+
+- Suppose one chooses a student at random from a class and records the month when she or he was born.  The sample space $S$ is the list of these months:
+
+$S$ = \{January,  February, March, April, May, June, July, August, September, October, November, December\}.
+
+- Define the events $L$ that the student is born during the last half of the year and $F$ that the student is born during a month that is four letters long.   
+
+$L$ = \{July, August, September, October, November, December\}.
+
+
+$F$ = \{June, July\}.
+
+## Some Event Operations
+
+
+- $L \cap F$ is the event that the student is born during the last half of the year AND is born in a four-letter month = \{July\}.
+
+- $L \cup F$, in contrast, is the event that the student is EITHER born during the last half of the year OR born in a four-letter month = \{June, July, August, September, October, November, December\}.
+
+- $\bar L$ (or $L^c$) is the event that the student is NOT born during the last half of the year = \{January,  February, March, April, May, June\}
+
+
+## The Three Probability Axioms
+
+There are three basic laws or axioms that define probabilities:
+
+- **Axiom 1**:  For any event $A$,  $P(A) \geq 0$.  That is, all probabilities are nonnegative values.
+
+-	**Axiom 2**:   $P(S) = 1$.  That is, the probability that you observe something in the sample space is one.
+
+-	**Axiom 3:**  Suppose one has a sequence of events  $A_1, A_2, A_3, ...$ that are mutually exclusive.  Then one finds the probability of the union\index{union} of the events by adding the individual event probabilities:
+
+$$
+P(A_1 \cup A_2 \cup A_3 \cup ...) = P(A_1) + P(A_2) + P(A_3) + ...
+$$
+
+## Properties
+ 
+- Given the three basic axioms, some additional facts about probabilities can be proven.  These additional facts are called properties.
+
+- These are not axioms, but rather additional facts that are derived knowing the axioms.  Below several familiar properties about probabilities are stated and we prove how each property follows logically from the axioms.
+
+## Property 1
+
+- If $A$ is a subset of $B$, that is $A \subset B$, then $P(A) \le P(B)$.
+  
+This property states that if one has two events, such that one event is a subset of the other event, then the probability of the first set cannot exceed the probability of the second.  
+
+## Proof of Property 1
+
+**Proof**:  The proof begins with a Venn diagram\index{Venn diagram} where a set $A$ is a subset of set $B$. (See the figure.)
+
+```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/venn1.png")
+```
+ 
+## Proof of Property 1 (continued)
+
+Note that  the larger set $B$ can be written as the union of $A$ and  $\bar A \cap B$, that is,
+\begin{equation}
+B = A \cup (\bar A \cap B)
+\end{equation}
+Note that $A$ and $\bar A \cap B$ are mutually exclusive.  So one can   apply Axiom 3 and write
+\begin{equation}
+P(B) = P(A) + P(\bar A \cap B)
+\end{equation}
+Also, by Axiom 1, the probability of any event is nonnegative.  So the probability of $B$ is equal to the probability of $A$ plus a nonnegative number.  So this implies
+\begin{equation}
+P(B) \ge P(A)
+\end{equation}
+
+
+## Property 2:  
+
+- $P(A) \le 1$.
+
+
+**Proof**: Actually this property is a consequence of Property 1.  Consider the two events $A$ and the sample space $S$.  Obviously $A$ is a subset of the sample space -- that is,
+\begin{equation}
+A \subset S
+\end{equation}
+So applying Property 1,
+\begin{equation}
+P(A) \le P(S) = 1.
+\end{equation}
+It is known that $P(S) = 1$ from the second Axiom 2.  So we have proved our result.
+
+## The Complement and Addition Properties
+
+- There are two additional properties of probabilities that are useful in computation.  
+
+
+\medskip
+
+## Complement property: 
+
+- For an event $A$,  
+
+$$P(\bar A) = 1 - P(A).$$
+
+- The complement property, states that the probability of the complement\index{complement} of an event is simply one minus the probability of the event.
+
+
+
+\medskip
+
+## Addition property
+
+For two events $A$ and $B$, 
+
+\begin{equation}P(A \cup B) = P(A) + P(B) - P(A \cap B).
+\end{equation} 
+
+- The second property, called the addition property, gives a formula for the probability of the union\index{union} of two events.
+
+## Example
+
+- Revisit the example where one was interested in the birth month of a student selected from a class.  As before,  let $L$ represent the event that the student is born during the last half of the year and $F$ denote the event that the student is born during a month that is four letters long.
+
+- There are 12 possible outcomes for the birth month.  Using data from the births in the U.S., we obtain the following probabilities for the months.  
+
+
+Month | Jan |  Feb|  Mar|  Apr|  May| June 
+-----|-----|-----|-----|-----|-----|-----
+Prob | 0.081| 0.075| 0.083| 0.076| 0.082| 0.081
+
+Month | July|  Aug| Sept|  Oct|  Nov|  Dec
+-----|-----|-----|-----|-----|-----|-----
+Prob | 0.088| 0.091| 0.088| 0.087| 0.082| 0.085
+
+## Computations
+
+Using this probability table, one finds ...
+
+
+1.  $P(L) = P$(July, August, September, October, November, December) 
+	= 0.088 +0.091+0.088+0.098+0.082+0.085 = 0.521.
+
+2.  $P(F)$ = $P$(June, July) = $0.081+0.088 = 0.169$.
+
+
+## Using Complement Property
+
+- What is the probability the student is not born during the last half of the year?  It is easier to compute this probability by noting that the event of interest is the complement of the event $L$, and  the complement property can be applied
+$$
+P(\bar L) = 1 - P(L).
+$$
+ 
+## Using Addition Property
+ 
+- What is the probability the student is either born during the last six months *or* a month four letters long?  In the Figure on the next slide,  the sample space $S$ is displayed consisting of the twelve possible birth months, and the events $F$ and $L$ are shown by circling the relevant outcomes.  The event $F \cup L$ is the union of the two circled events.
+
+\begin{align*}
+P(F \cup L)  &= P(F) + P(L) - P(F \cap L) \\
+  &= 0.521 + 0.169 - 0.088 \\
+  &= 0.602
+\end{align*}
+
+## Venn Diagram
+
+```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/venn2.png")
+``` 
+ 
+
+
+
+ 
+
+

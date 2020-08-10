@@ -1,0 +1,98 @@
+---
+title: "Chapter 6.1b Marginal PMFs"
+author: "Jim Albert and Monika Hu"
+date: "Chapter 6 Joint Probability Distributions"
+output:
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## Introduction
+ 
+- Once a joint probability mass function for $(X, Y)$ has been constructed, one can find probabilities for one of the two variables.  
+
+- In our balls example, suppose one wants to find the probability that exactly three red balls are chosen, that is $P(X = 3)$.  
+
+- Find this probability by summing values of the pmf $f(x, y)$ where $x = 3$ and $y$ can be any possible value of the random variable $Y$.
+
+ \begin{align*}
+ P(X = 3) & = \sum_y f(3, y) \\
+ & = f(3, 0) + f(3, 1) + f(3, 2) \\
+ & = \frac{3}{252} + \frac{12}{252} + \frac{6}{252} \\
+ & = \frac{21}{252}.
+ \end{align*}
+ 
+## Repeat this calculation for all $X$ values
+
+- Repeat this operation is done for each of the possible values of $X$.
+
+- The _marginal_ probability mass function of $X$, $f_X()$ is defined as follows:
+
+\begin{equation}
+ f_X(x) = \sum_y f(x, y).
+ \end{equation}
+ 
+- One  finds this marginal pmf of $X$ from the joint pmf table by summing the joint probabilities for each row of the table.  
+
+## The Marginal pmf for $X$
+
+- One obtains ...
+ 
+ | \(x\) | \(f_X(x)\) |
+| :---: | :--------: |
+|   0   |   21/252   |
+|   1   |  105/252   |
+|   2   |  105/252   |
+|   3   |   21/252   |
+
+- Note that the marginal pmf of $X$ is a legitimate probability function in that the values are nonnegative and the probabilities sum to one.   
+
+## Marginal pmf of $Y$
+
+- One can also find the marginal pmf of $Y$, denoted by $f_Y()$, by a similar operation.
+
+- For a fixed value of $Y = y$ one sums over all of the possible values of $X$.
+
+$$
+ f_Y(y) = \sum_x f(x, y).
+$$
+
+## Example
+
+- To find $f_Y(2) = P(Y = 2)$ in our example, one sums the joint probabilities in the table over the rows in the column where $Y = 2$.  One obtains the probability:
+ $$
+ f_Y(2)  = \sum_x f(x, 2) 
+ $$
+ 
+ $$
+  = f(0, 2) + f(1, 2) + f(2, 2) + f(3, 2)
+$$
+
+$$
+  = \frac{6}{252} + \frac{54}{252} + \frac{54}{252} + \frac{6}{252}\\
+  = \frac{120}{252}.
+$$
+ 
+## Marginal pmf of $Y$
+
+- By repeating this exercise for each value of $Y$, one obtains the marginal pmf displayed in Table 6.3.
+ 
+ | \(y\) | \(f_Y(y)\) |
+| :---: | :--------: |
+|   0   |   6/252    |
+|   1   |   60/252   |
+|   2   |  120/252   |
+|   3   |   60/252   |
+|   4   |   6/252    |
+
+- Given a table of a joint pmf of $(X, Y)$, one can always find the marginal pmfs of $X$ and $Y$.
+
+ 

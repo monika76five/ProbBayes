@@ -1,0 +1,138 @@
+---
+title: Chapter 3.9 Learning About a Spinner
+author: Jim Albert and Monika Hu
+date: Chapter 3 Conditional Probability
+output: 
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+## Introduction
+
+- The ```ProbBayes``` package is used here to learn about the identity of an unknown spinner.
+
+- It is supposed that each spinner is divided in several regions and the outcomes of the spins are the integers 1, 2, ... and so on.
+
+## Example of a spinner
+
+```
+library(ProbBayes)
+areas <- c(2, 1, 2, 1, 2)
+spinner_plot(areas)
+```
+
+```{r,  echo = FALSE, message = FALSE, out.width  = 200}
+knitr::include_graphics("chapter3/spinnerplot.png")
+```
+
+## Four possible spinners
+
+- To illustrate Bayes' rule\index{Bayes' rule}, suppose there are four spinners, $A, B, C, D$ displayed on the next slide
+
+```
+s_reg_A <- c(2, 2, 2, 2)
+s_reg_B <- c(4, 1, 1, 2)
+s_reg_C <- c(2, 4, 2)
+s_reg_D <- c(1, 3, 3, 1)
+many_spinner_plots(list(s_reg_A, s_reg_B,
+                  s_reg_C, s_reg_D))
+```
+
+## Four possible spinners
+
+```{r, out.width = 250, echo = FALSE}
+knitr::include_graphics("chapter3/fourspinners.png")
+```
+
+## Problem
+
+- A box contains four spinners, one of each type.  A friend selects one and holds it behind a curtain.  Which spinner is she holding?
+
+- There are four possible models
+
+```{r}
+(bayes_table <- data.frame(Model=c("Spinner A",
+"Spinner B", "Spinner C", "Spinner D")))
+```
+
+## Prior
+
+- One can assign probabilities to each model that reflect her opinion about the likelihood\index{likelihood} of these four spinners.  
+
+- A person's Prior assigns the same probability of 1/4 is assigned to each model.   
+
+```{r}
+bayes_table$Prior <- rep(1/4, 4)
+bayes_table
+```
+
+## Graph of the prior
+
+- The ```prob_plot()```\index{prob\_plot()} function graphs the prior distribution
+
+```
+prob_plot(bayes_table)
+```
+
+```{r, out.width = 200, echo = FALSE, fig.cap = "Prior on the four spinners"}
+knitr::include_graphics("chapter3/Spinners_prior.png")
+```
+
+## Likelihoods
+
+
+- Next, our friend will spin the unknown spinner once -- it turns out to land in Region 1. 
+
+- The likelihoods are the probabilities of observing a spin in Region 1 for each of the four spinners.  
+
+- Look at Spinner $A$.  Region 1 is one quarter of the total area for Spinner $A$, so the likelihood for Spinner $A$ is one fourth, or
+$$
+Prob({\rm Region 1} \mid {\rm Spinner} \, \, A) = 1 / 4.
+$$
+
+## Likelihoods
+
+- Looking at Spinner $B$, Region 1 is one half of the total area so its likelihood is one half.  In a similar fashion, one determines the likelihood for Spinner $C$ is one fourth and the likelihood for Spinner $D$ is one eighth.  
+
+```{r}
+bayes_table$Likelihood <- c(1/4, 1/2,  1/4, 1/8)
+bayes_table
+```
+
+## The posterior 
+
+- By Bayes' rule, the posterior probability of a model is proportional to the product of the prior probability and the likelihood.  That is,
+$$
+Prob({\rm model} \mid {\rm data}) \propto Prob({\rm model}) \times Prob({\rm data} \mid {\rm model})
+$$
+
+- An R function ```bayesian_crank()```\index{bayesian\_crank()} takes as input a data frame with variables ```Prior``` and ```Likelihood``` and outputs a data frame with new columns ```Product``` and ```Posterior```.   This function is applied for our example where we observe "Region 1" outcome.
+
+## The posterior 
+
+```{r, message = FALSE, warning = FALSE}
+library(ProbBayes)
+(bayesian_crank(bayes_table) -> bayes_table)
+```
+
+- For each possible model, the prior probability is multiplied by its likelihood.  After finding the four products, these are changed to probabilities by dividing each product by the sum of the products.  
+
+## Compare prior and posterior
+
+- By using the ```prior_post_plot()```\index{prior\_post\_plot()} function, the prior and posterior distributions are graphically compared
+
+```
+prior_post_plot(bayes_table)
+```
+
+```{r, out.width = 200, echo = FALSE}
+knitr::include_graphics("chapter3/priorpost.png")
+```
+
+## Comments
+
+- Initially, one had no reason to favor any spinner and each of the four spinners was given the same prior probability of 0.25.
+
+- Now after observing one spin in Region 1, the person's opinions have changed.  
+
+- Now the most likely spinner behind the curtain is Spinner B since it has a posterior probability of 0.44.  In contrast, it is unlikely that Spinner D has been spun since its new probability is only 0.11. 

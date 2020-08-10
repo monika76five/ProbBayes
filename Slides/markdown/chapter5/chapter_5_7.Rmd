@@ -1,0 +1,190 @@
+---
+title: "Chapter 5.7 Normal Distribution"
+author: "Jim Albert and Monika Hu"
+date: "Chapter 5 Continuous Random Variables"
+output:
+  beamer_presentation: default
+fontsize: 12pt
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(ProbBayes)
+library(dplyr)
+library(tidyverse)
+crcblue <- "#2905a1"
+```
+
+## Some Marathon Data
+
+- Let's look at some data from a marathon race.
+
+- 2515 women completed Grandma's Marathon. Here is a histogram of these times, measured in minutes.
+
+```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/grandma1.png")
+```
+
+## Normal Curve
+
+- These measured times have a bell shape.  
+
+- Overlay a Normal curve on top of this histogram.  
+
+- Measurement data like this marathon time data are often well approximated by a Normal curve.
+
+ ```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/grandma2.png")
+```
+
+## Formula
+
+- A Normal density curve has the general form
+$$
+ f(x) = \frac{1}{\sqrt{2 \pi} \sigma} \exp\left\{-\frac{(x - \mu)^2}{2 \sigma^2}\right\}, -\infty < x < \infty.
+$$
+
+- Described by two parameters -- the mean $\mu$ and the standard deviation $\sigma$.  
+
+- The mean $\mu$ is the center of the curve.  Looking at the Normal curve above, one sees that the curve is centered about 270 minutes.
+
+- The number $\sigma$, the standard deviation, describes the spread of the curve.  
+
+## Early use of the Normal curve
+ 
+- By the 19th century, it was believed by some scientists such as Adolphe Quetelet that the Normal curve would represent the distribution of any group of homogeneous measurements.  
+
+- Quetelet considered the frequency measurements for the chest circumference measurements (in inches) for 5738 Scottish soldiers taken from the Edinburgh Medical and Surgical Journal (1817).  
+
+
+ ```{r,  echo = FALSE, out.width = 100}
+knitr::include_graphics("figures/chestmeasurements.png")
+```
+
+## Computing Normal probabilities
+
+- Suppose that the Normal density with $\mu$ = 274 minutes and $\sigma$= 43 minutes represents the distribution of women racing times.  
+
+- Say one is interested in the probability that a runner completes the race less than 4 hours or 240 minutes.  
+
+- One computes this probability by finding an area under the Normal curve.  
+ 
+ 
+ ```{r,  echo = FALSE, out.width = 150, fig.cap = "Normal density with mean 274 and standard deviation 43, with illustration of the area under the curve less than 240 (minutes)."}
+knitr::include_graphics("figures/newnormal1.png")
+```
+ 
+ 
+## Normal Probability Calculations
+
+- One expresses this area as the integral
+
+  $$
+P(X \le 240) = \int_{-\infty}^{240} \frac{1}{\sqrt{2 \pi} \sigma} \exp\left\{-\frac{(x - \mu)^2}{2 \sigma^2}\right\} dx
+ $$
+
+- Cannot integrate this function analytically.
+
+- Instead one finds this area by use of the R  ```pnorm()```\index{pnorm()} function in R. This function is used for three examples, illustrating the computation of three types of areas.
+
+- Work with marathon times that are approximately Normally distributed with mean $\mu$ = 274 and standard deviation $\sigma$ = 43.  
+
+
+## Finding a "less than" area
+
+- One is interested in the probability that a  marathon runner completes the race in under 240 minutes.  
+
+- One wishes to find $P(X < 240)$ which is the area under the Normal curve to the left of 240.  
+
+- The function value \texttt{pnorm(x, m, s)} gives the value of the cdf of a Normal random variable with mean $\mu = a$ and $\sigma = s$ evaluated at the value $x$.
+
+- For our example, the desired probability is given by
+
+```{r}
+pnorm(240, 274, 43)
+```
+
+## Finding a "between two values" area  
+  
+- Suppose one wishes to compute the probability that a marathon runner completes a race between two values, such as $P(230 < X < 280)$.
+
+```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/newnormal2.png")
+```
+
+## Finding a "between two values" area
+
+- One  writes this probability as the difference of two "less than" probabilities:
+
+$$
+P(230 < X < 280)  = P(X < 280) - P(X < 230) \\
+  = F(280) - F(230), 
+$$
+
+where $F(x)$ is the cdf of a Normal(274, 43) random variable evaluated at $x$. 
+
+- By use of the \texttt{pnorm()} function, this probability is equal to
+
+```{r}
+pnorm(280, 274, 43) - pnorm(230, 274, 43)
+```
+
+## Finding a "greater than" area
+
+- One might be interested in the probability that $X$ is greater than some value, such as $P(X > 300)$, the probability a  runner takes more than 300 minutes to complete the race.
+
+
+```{r,  echo = FALSE, out.width = 200}
+knitr::include_graphics("figures/newnormal3.png")
+```
+
+## Finding a "greater than" area
+
+- This probability is found by the complement property of probability, that 
+$$
+P(X > 300)  = 1 - P(X \le 300) \\
+  = 1 - F(300).
+$$
+
+-  Therefore, one uses the \texttt{pnorm()} function to compute the probability that $X$ is smaller than 300, and then subtract the answer from 1.
+
+```{r}
+1 - pnorm(300, 274, 43) 
+```
+
+## Computing Normal Percentiles
+
+
+- Suppose that t-shirts will be given away to the runners who get the 25\% fastest times.  How fast does a runner need to run the race to get a t-shirt?
+
+- The 25th percentile of the distribution is a time, call it $x_{25}$, such that 25 percent of all times are smaller than $x_{25}$.  
+
+ ```{r,  echo = FALSE, out.width = 200, fig.cap = "Normal density with mean 274 and standard deviation 43, with illustration of the 25th percentile."}
+knitr::include_graphics("figures/newnormal4.png")
+```
+
+## Calculating Normal Percentiles
+
+ - Percentiles of a Normal curve are  computed in R by use of the ```qnorm()``` function.  
+ 
+ - ```qnorm(p, m, s)``` gives the percentile of a Normal($m, s$) curve corresponding to a "left area" of ```p```.  
+ 
+ - Here the value of ```p``` is 0.25, and so the 25th percentile of the running times (with mean 274 minutes and standard deviation 43 minutes) is computed to be
+
+```{r}
+qnorm(0.25, 274, 43)
+```
+ 
+- This means one needs to run faster (lower) than 245.0 minutes to get a t-shirt in this competition.
+
+## Another Percentile
+
+- Suppose one needs to complete the race faster than 10% of the runners - how fast does one need to run?
+One wishes to find the 90th percentile, $x_{90}$ of the Normal distribution.
+ 
+```{r,  echo = FALSE, out.width = 500}
+normal_quantile(0.9, c(274, 43))
+```
+
+- 90 percent of the runners run faster than 329 minutes.
+
