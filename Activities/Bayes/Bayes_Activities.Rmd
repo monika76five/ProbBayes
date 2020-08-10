@@ -1,0 +1,284 @@
+---
+title: "Bayes Activities"
+author: "Jim Albert"
+date: "8/5/2020"
+output:
+  html_document:
+    theme: lumen
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+    code_folding: show
+header-includes: \usepackage{amsmath}
+---
+
+# Chapter 6: ACTIVITY: Learning About a Spinner
+
+Suppose there are four possible spinners, Spinner A, Spinner B, Spinner C, and Spinner D that are in a box.  One of the spinners is chosen from the box at random and we are going to spin this particular spinner 10 times, recording the number of Reds that we observe.
+
+We are going to use R to simulate the process of (1) choosing the spinner and (2) spinning the spinner 10 times many times.  
+
+**The main question is:** Given the number of Reds we observe in 10 spins, what have we learned about the identity of the unknown spinner?
+
+Using the ```ProbBayes``` package, we define the four spinners by means of vectors and use the ```many_spinner_plots()``` function to display the spinners.
+
+Let $P$ denote the probability of spinning in the red region (region numbered 1).  Note that the probability $P$ is equal respectively 1/2, 1/3, 1/4, and 1/5 for Spinners A, B, C, and D.
+
+
+```{r, message = FALSE}
+library(ProbBayes)
+spinners <- list(c(1, 1),
+                 c(1, 1, 1),
+                 c(1, 1, 1, 1),
+                 c(1, 1, 1, 1, 1))
+many_spinner_plots(spinners)
+```
+
+The function ```spinner_likelihoods()``` will give the probabilities of the spin values 1, 2, 3, 4, 5 for each of the four spinners.  These probabilities are stored in the matrix ```Prob```.
+
+```{r}
+(Prob <- spinner_likelihoods(spinners))
+```
+
+The function ```one_sim()``` will implement the simulation:  (1)  choose one spinner at random and (2) spin the chosen spinner 10 times, collecting the number of times the spinner lands 1 (red).  The output is the spinner chosen and the number of reds.
+
+```{r}
+one_sim <- function(){
+  Spinner <- sample(4, size = 1, replace = TRUE)
+  spins <- sample(5, replace = TRUE,
+                  prob = Prob[Spinner, ], size = 10)
+  c(Spinner, sum(spins == 1))
+}
+```
+
+The ```replicate()``` function repeats this simulation 1000 times, collecting the outcomes in the matrix ```Results```.
+
+```{r}
+set.seed(12134)
+Results <- replicate(1000, one_sim())
+```
+
+The ```table()``` function is used to display a two-way frequency table of the Spinner chosen and the Number of Reds for the 1000 runs of the simulation.
+
+```{r}
+table(Spinner = Results[1, ], 
+      Num_Reds = Results[2, ])
+```
+
+1. From this table, find the marginal distribution of $X$, the number of reds that you observe.
+
+2. Find the expected value of $X$.
+
+3. What is the most likely value of $X$? (This is a different question than question 2.)
+
+4. Suppose you observe three reds, that is $X = 3$. Find the conditional distribution of the unknown value of $P$ (chance of a Red) given $X = 3$.
+
+5. Interpret what you found -- which Spinner is most likely given that you observed three reds?
+
+6.  Instead suppose you observed only one red, that is $X = 1$.  Find the conditional distribution of P given $X = 1$.  Which Spinner is most likely in this situation?
+
+# Chapter 7:  ACTIVITY:  Did Shakespeare use long words?
+
+One way to measure the complexity of some written text is to look at the frequency of long words, where we will define a "long word" as one that has 7 or more characters. Actually, we are interested in the fraction of all words that are long. For example, consider this sentence (from Moby Dick):
+
+***
+
+"These **reflections** just here are **occasioned** by the **circumstance** that after we were all seated at the table, and I was **preparing** to hear some good **stories** about **whaling**; to my no small **surprise**, nearly every man **maintained** a **profound** **silence**."
+
+***
+
+There are a total of 41 words of which 10 (the ones in bold type) are long, so the fraction of long words is 10/41 = 0.24.
+
+By the way, I also chose a larger sample of 741 words from Moby Dick and 20% of these words were long.Let's focus on words in plays written by Shakespeare.
+
+Let $P$ denote the proportion of long words among all of the plays written by William Shakespeare.
+
+**Questions:**
+
+1. Without looking at any Shakespeare text, make an educated guess at the value of $P$.
+
+2. Decide (without looking at any Shakespeare text) how many observations your prior guess is worth.
+
+3. Based on your answers to questions 1 and 2, find the shape parameters of your beta prior.
+
+4. Now you'll collect some data. Going to
+
+http://shakespeare.mit.edu/ 
+
+choose one play and select approximately 100 words from your chosen play.  Paste your selection of words to the site 
+
+https://wordcounttools.com/ 
+
+This site will count the number of words in your text and also give you the count of long words. Record the number of words $N$ and number of long words $Y$ you find.
+
+5. Find the shape parameters of the beta posterior for $P$ that combines your prior with the data information.
+
+Using the ```qbeta()``` and ```pbeta()``` functions in R ...
+
+6. Find the posterior median.
+
+7. Find the posterior probability that $P$ is larger than 0.20.
+
+8. Find a 90 percent interval estimate for $P$.
+
+9. Suppose you plan to look at a new sample of 100 words from a Shakespeare. Find a 90% prediction interval for the number of long words you will find.
+
+**HINT:** Use a "model/data" simulation to simulate values of the predictive distribution of $Y_1$, where $Y_1$ is the number of long words in a future sample of text.
+
+# Chapter 7:  ACTIVITY:  How Much of the State is Water?
+
+A hypothetical state is displayed below that is covered by a lot of water. You will implement a Bayesian analysis to learn about the proportion $P$,  the fraction of the area of the state that has water. 
+
+![](https://bayesball.github.io/map.jpeg)
+
+1. Suppose $p$ is one of these values shown in the following table. By just looking at the figure (don't make any measurements), place some whole number weights in the table that reflect your beliefs about the relative likelihoods of these proportion values.
+
+```{r, message = FALSE}
+library(knitr)
+library(kableExtra)
+prior_table <- data.frame(p = 
+                  seq(0.2, 0.7, by = 0.1),
+                Weight = "", Prior = "")
+kable(prior_table) %>% 
+  kable_styling(bootstrap_options = "bordered",
+                full_width = FALSE)
+```
+
+2. Convert your weight values to probabilities (this is your Prior distribution).
+
+3. Now you need some data to sharpen your opinion about $p$. Using your pen and closing your eyes, choose a point at random in the state. Do this 10 times, keeping track of the number of points that fall inside water. 
+
+Record your data below.
+
+- Number of points: _________
+- Number that fall in water: ______
+
+4. By use of a Bayes' table, compute the posterior distribution for $p$. Show all of your work.
+
+5. Find the posterior mean of $p$.
+
+6. Find the posterior probability that $p$ is at least 50%.
+
+7. Suppose you were to sample 10 more points. Find the predictive probability that exactly four points would fall in water.
+
+# Chapter 10: ACTIVITY: Multilevel Modeling
+
+(Inspired from Gelman and Nolan, _Teaching Statistics:  A Bag of Tricks_, 2nd edition, Oxford Press.)
+
+### The Story
+
+Several public health inspectors in Ohio are interested in learning about the kidney cancer death rates in Ohio counties.  They will collect the number of deaths due to kidney cancer for 16 counties and make an assessment on the best and worst counties with respect to risk to kidney cancer.
+
+### The Activity
+
+Two students will be the two health inspectors and will leave the room. Each of the remaining students is assigned a Ohio county with a corresponding population size $N$.  In addition, each student will be assigned a true cancer death rate $\theta$ assigned from a gamma distribution with known parameters.  
+
+Then each student will simulate a value of $y$ -- the observed number of deaths from a Poisson distribution with mean $N \theta$.
+
+On the blackboard, we record for each county:
+
+* the population size $N$
+* the true death rate $\theta$
+* expected rate ($N \times \theta$)
+* value of $y$
+* the observed death rate $y / N$
+
+We erase the population information (values of $N, \theta, N \theta$ ) and bring back the officials -- they will determine on the basis of the data the best and worst counties.  (Will they actually find the best and worst counties?)
+
+### The Bayesian Analysis
+
+Here is the multilevel model:
+
+1.  $y_1, ..., y_{16}$ are independent, $y_j \sim Poisson(N_j \theta_j)$
+
+2.  $\theta_1, ..., \theta_{16}$ are a sample from a Gamma($\alpha, \beta$) distribution.
+
+3.  $(\alpha, \beta)$ is assigned the prior $1 / (\alpha \beta)$
+
+
+We fit this multilevel model to get improved estimates at the cancer rates.
+
+
+Collect population data about all of the Ohio counties.
+
+```{r}
+d <- read.csv("ohio.counties.csv")
+```
+
+Order the counties by population and select 16 counties for
+the class to use.
+
+```{r, message = FALSE}
+library(dplyr)
+```
+
+```{r}
+d %>% arrange(X1.Jul.09) -> d
+d.sample <- d[c(1, 4, 10, 12, 14, 16, 18, 30, 
+               44, 45, 86, 88, 40, 50, 60, 70),]
+N <- d.sample$X1.Jul.09
+n <- length(N)
+```
+
+Display the populations and names:
+
+```{r}
+d.sample %>% select(X, X1.Jul.09)
+```
+
+Assume that the true rates follow a Gamma distribution with parameters $\alpha = 27$ and $\beta = 58,000$.  Simulate 16 true rates from this distribution.
+
+```{r}
+set.seed(1234)
+alpha <- 27; beta <- 58000
+(theta <- rgamma(n, alpha, beta))
+```
+
+The students will each simulate the number of cancer deaths from their county.
+
+```{r}
+y <- rpois(n, theta*N)
+```
+
+Use this data to estimate (alpha, beta) from posterior.  Here is the definition of the log posterior of ($\log \alpha, \log \beta$).
+
+```{r}
+lpost <- function (theta, data) {
+    y <- data$y; N <- data$N
+    alpha <- exp(theta[1]); beta <- exp(theta[2])
+    sum(lgamma(alpha + y) - (y + alpha) * log(N + beta) + 
+      alpha * log(beta) - lgamma(alpha))
+}
+```
+
+Find the posterior estimates of $(\alpha, \beta)$.
+
+```{r}
+require(LearnBayes)
+fit <- laplace(lpost, c(3, 10), list(y=y, N=N))
+(ab <- exp(fit$mode))
+alpha.fit <- ab[1]
+beta.fit <- ab[2]
+```
+
+Here are the posterior estimates of the true cancer rates.
+
+```{r}
+(post.est <- (y + alpha.fit) / (N + beta.fit))
+```
+
+Plot the observed and estimated rates against the population sizes.  Note the shrinkage of the multilevel estimates towards an average cancer rate.
+
+```{r}
+library(ggplot2)
+df <- rbind(data.frame(Type = "Observed",
+                       Rate = y / N,
+                       Population = N),
+            data.frame(Type = "MLM",
+                       Rate = post.est, 
+                       Population = N))
+ggplot(df, aes(Population, Rate, color=Type)) +
+            geom_point()
+```
+
+

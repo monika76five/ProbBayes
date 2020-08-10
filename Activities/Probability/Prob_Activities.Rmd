@@ -1,0 +1,730 @@
+---
+title: "Probability Activities"
+author: "Jim Albert"
+date: "12/9/19"
+output:
+  html_document:
+    theme: lumen
+    toc: yes
+    toc_depth: 2
+    toc_float: yes
+    code_folding: show
+header-includes: \usepackage{amsmath}
+---
+
+# Chapter 1:  ACTIVITY:  Some questions on probability
+
+For each of the following questions, 
+specify the probability (as best as you can) and 
+explain why you gave this particular probability value.
+
+1.  Suppose you have a bag with 4 white and 8 red balls. You choose a ball at random from the bag. What is the probability that the ball you chose is white?
+ 
+2.  Suppose you walk into your college bookstore blindfolded and bump into a fellow student. What is the probability the student is female?
+ 
+3.  ___________ [YOUR TEAM] is playing ________  [ANOTHER TEAM] soon in _________ [GIVE SPORT].  What is the chance that your team will win?
+ 
+4.  You drop a thumbtack 20 times on the floor and it lands with the point-side up 12 times.  What is the probability that the tack will land point-side up?
+
+5.  Suppose you toss a coin 20 times and get 19 heads. What is the chance that the next toss is heads?
+ 
+6.  What is the chance that you will be married when you are 25 years old?
+ 
+7.  If you roll two dice, what is the probability that the sum of the two dice rolls is equal to 5?
+ 
+8.  Suppose you are going to interview a high school math teacher. What is the chance that this teacher is male?
+ 
+9.  What is the chance that you will complete your college education (that is, graduate) in five years or less?
+ 
+10.  When a meteorologist reports that there is a 50% chance of rain tomorrow, what does this mean?
+ 
+11.  What's the chance that two people in our class have the same birthday (month and day)?
+
+
+# Chapter 1:  ACTIVITY:  Tossing and spinning a poker chip
+
+To apply the frequency notion of probability, it is important that we are able to perform our random experiment repeatedly under similar conditions.  It might seem that this is obvious, but actually it is hard to repeat an experiment exactly the same way.  We illustrate this through the simple experiment of flipping a poker chip.
+
+**Materials needed:**  A set of standard plastic poker chips and a container of silly putty or gum.  (If poker chips are not available, you can do these experiments with all quarters or all nickels.)
+
+1.  Look at your poker chip and decide which side is “heads”.  Consider the experiment of flipping a poker chip 20 times and counting the number of heads.  Before you do this, the instructor and class should decide exactly what it means to “flip a chip.”    Here are some guidelines for flipping (the class may wish to adjust these rules):
+
+- you flip the chip in the air
+- the chip should flip at least five times in the air before coming down
+- the chip has to land on the desk
+- any experiments with insufficient flips or where the chip falls on the floor are ignored
+
+First try out your flipping method until you have a style that you can repeat many times.  Then flip the chip 20 times and record the number of heads you observe.
+
+2.  Next, consider the experiment of spinning the chip 20 times and recording the number of heads.  To spin the chip, you hold the chip level with one finger and flick the chip with the other finger so that the chip spins on the table with at least five spins.  Practice spinning until you are comfortable with the method.  Then spin the chip 20 times, recording the number of heads.
+
+3.   Suppose you add a small amount of putty to the heads side of the chip.  Do you think this change will modify the probability of heads when flipping?   What if you spin – do you think the probability of heads will change?
+
+4.  Put the putty on the heads side and flip the chip 20 times – record the number of heads.
+
+5.  Now spin the modified chip 20 times – record the number of heads.
+
+6.  Combine the class data for the four experiments – flip regular chip, spin regular chip, flip modified chip, and spin modified chip.  For each dataset, construct a graph of the number of heads, and find a typical number of heads.  (You will have four graphs and summary values corresponding to the four experiments.)
+
+7.  Summarize your results.  What is the probability of heads when the chip is flipped?  What is the probability when the chip is spun?  Does the putty affect the probability of heads for the flipped chip?  Does the putty change the probability of heads on a spin?
+
+# Chapter 2:  ACTIVITY:  Mothers and babies
+
+**DESCRIPTION:**  One day four babies were born at the local hospital.  But for some reason, the nurses forgot to put identification bands on the babies, and decided (believe it or not) to give the babies back to the four mothers in some random fashion and hope for the best.  How many babies will be correctly matched with the mothers?  We will answer this question two ways, first using a simulation with cards, and then by listing all possible outcomes and using the classical notion of probability.
+
+**MATERIALS NEEDED:**  Sets of playing cards where one set contains eight cards:   four red cards of different values, say seven, eight, Jack, and Queen, and four black cards of the same values.
+
+**METHOD 1**.  (Simulation)  We will simulate this experiment using four red cards of different types (the moms) and four black cards of the same types.  
+
+- Put the four red cards down in a row.
+- Mix up the four black cards and place them below the red cards.
+- Count the number of matches.
+
+Repeat this experiment 20 times – record your answers in the first table, and summarize your values in the second table.
+
+
+**METHOD 2**.  (Thinking of all possible outcomes)  Suppose that the names of the four babies are Abby Albert, Bobby Brown, Cindy Crawford, and Darren Daulton.  In your lab book, write down all ways of arranging or permuting the four first names (ABCD and ABDC are two possible arrangements).  For each arrangement, count the number of matches.  For example if babies ABDC are assigned to mom’s ABCD, the number of matches is 2.  Find the probabilities of the number of matches and put your answers in a table.
+
+# Chapter 2:  ACTIVITY:  Sampling from a bag
+
+**DESCRIPTION:**  Pick up a lunch bag and 5 blocks – 2 blocks have one color and 3 blocks have a different color.  Let’s assume the colors are black and white (your colors may vary).  Think of black as the darker color of the two colors you have.  You put the 5 blocks in the bag, mix them up, and choose two out (without replacement) – how many blocks will be black?  We will address this question first by doing a simulation, and then by enumerating all of the outcomes of the experiment.
+
+**MATERIALS NEEDED:**  A number of lunch bags, where each bag contains 5 blocks (these could be balls or dice), where 2 blocks have one color and 3 blocks have a different color.
+
+**METHOD 1** (Simulation)
+
+- Simulate this process 20 times.
+- Put all the blocks in the bag and mix them up.
+- Select two out without replacement.
+- Record the number of blacks you see in your sample.
+
+Put your answers in the table below.
+
+Trial | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10
+--|--|--|--|--|--|--|--|--|--|--|
+**# of Blacks** | | | | | | | | | |
+**Trial** | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20
+**# of Blacks** | | | | | | | | | |
+
+Find the probability of choosing 0 black, 1 black, etc – put your answers in the table.
+
+Number of Blacks |  0 | 1 | 2 |
+-- | -- | -- | --
+**Probability** |    |   |
+
+**METHOD 2** (Listing outcomes)
+
+Distinguish the blocks in the bag; if you have 2 black and 3 white blocks write them as {B1, B2, W1, W2, W3}.  Suppose you keep track of the order of the blocks you select (so choosing B1, W1 is different from choosing W1, B1).
+
+- Write down all possible outcomes (selections of two blocks).
+
+- Find the probabilities of choosing 0 black, 1 black etc – put your answers in the table.
+
+Number of Blacks |  0 | 1 | 2 |
+-- | -- | -- | --
+**Probability** |    |   |
+
+
+**METHOD 3** (Using counting arguments)
+
+1.  If the five blocks are distinguishable, you select two blocks, and the order in which you select the blocks is important, how many possible outcomes are there?
+
+2.  (Continuation of 1.)  Count the number of outcomes where you choose a black first and a white second.
+
+3.  Count the number of outcomes where you choose a white first and a black second.
+
+4.  Count the number of outcomes where you choose exactly one black ball.  (Combine answers from parts 1 and 2.)
+
+5.  Find the probability of choosing exactly one black.
+
+
+# Chapter 2:  ACTIVITY:  Mixed-up letters
+
+Suppose you randomly mix up the letters “s”, “t”, “a”, and “t”.   What is the chance that the mixed-up combination of letters spells “stat”?  What is the probability the mixed-up combination of letters spells a word?  Each part of this activity describes a different method for computing these probabilities.
+
+**Part I:  Hands-on simulation**
+
+Place the four letters on four blank cards.   You can simulate this experiment by (1) mixing up the four cards, (2) placing the cards down in a row, and (3) recording the arrangement that is spelled.  Perform this experiment 20 times.  Approximate the probability that the arrangement is “stat” and the arrangement spelled is actually a word.
+
+**Part II:  Simulation using R**
+
+This R function will randomly mix the four letters and create a "word".
+
+```
+one_word <- function(){
+  letters <- c("t", "s", "t", "a")
+  str_flatten(sample(letters))
+}
+one_word()
+```
+
+One can repeat this simulation by use of the replicate() function.  The table() function will construct a frequency table of the different words.
+
+```
+many_words <- replicate(1000, one_word())
+table(many_words)
+```
+
+6.  Using your output
+(a)  What is the probability that the random word is "stat"?
+(b)  What is the probability the arrangement is actually a word?
+
+**PART III:  Finding the exact probability**
+
+1.  Find the number of possible arrangements of the four letters “s”, “t”, “a”, and “t”.   
+2.  Assuming that the possible arrangements are equally likely, find the exact probability that the random arrangement is "stat".  
+3.  Find the exact probability that the random arrangement is actually a word.
+
+
+# Chapter 2:  ACTIVITY:  The longest run
+
+Suppose you have six balls, three are red and three are blue, and you randomly arrange them in a row.  Consider the “longest run” which is the length of the longest streak of blues or reds.  If your arrangement of balls is
+
+Red, Red, Blue, Blue, Red, Blue, 
+
+then the longest run will be equal to 2.  What are possible values for the longest run, and what is the probability of each possible value?   
+
+**PART I:   Doing an exact calculation**
+
+1.  How many possible arrangements are there?  (The three reds are identical and also the three blues.  This is an example of a counting rule for arrangements when the objects are not all distinguishable.)
+
+2.  What is the probability the arrangement will be Red, Red, Blue, Blue, Red, Blue ?
+
+3.  Assuming that all of the possible arrangements are equally likely, find the probability that the longest run is equal to 1, 2, and 3.  (These are the possible values.)  Express your answers as fractions.
+
+
+**PART II:  Simulating this problem on using R**
+
+This function will randomly arrange the six balls and output the length of the longest run of reds or blues.
+
+```
+random_streak <- function(){
+  balls <- c("Red", "Red", "Red", "Blue", "Blue", "Blue")
+  rballs <- sample(balls)
+  out <- rle(rballs)
+  max(out$lengths)
+}
+random_streak()
+```
+
+This will repeat the simulation 1000 times, colleting the longest runs in the vector long_runs.  A frequency table is constructed of the longest run values.
+
+```
+long_runs <- replicate(1000, random_streak())
+table(long_runs)
+```
+
+# Chapter 2:  ACTIVITY:  The birthday problem
+
+**PART I:  Using R**
+
+The function random_birthdays() will (1) take a random selection of birthdays (with replacement) from the days 1 to 365 and (2) check if at least two people have the same birthday.
+
+The single argument to random_birthdays() is the size of the sample n.
+
+```
+random_birthdays <- function(n){
+  bdays <- sample(365, size = n, replace = TRUE)
+  ifelse(length(unique(bdays)) < n, "match", "no match")
+}
+random_birthdays(23)
+```
+
+The replicate() function repeats this experiment 1000 times, recording if there is a match or not a match for each experiment.  One uses the table() function to construct a frequency table of the outcomes.
+
+```
+outcomes <- replicate(1000, random_birthdays(23))
+table(outcomes)
+```
+
+**PART II:  Doing an Exact Calculation:**
+
+Suppose there are 25 people in your class.  One can represent the birthdays of the 25 students by the slots
+
+			___  ___ ___  ___ … ___  ___
+ 			1	 2	3	4	24	25
+
+where each slot contains a number from 1 to 365.
+1.  How many collections of birthdays are possible?
+
+2.  Assuming that each possible collection is equally likely, then we wish to count the number of birthday collections where there is at least one match.  It actually is easier to count the number of collections where we have no match.  If we represent outcomes by numbers placed in the 25 slots …
+
+(a)  How many possible birthdays can you place in the first slot?
+(b)  If the second person has a different birthday from the first, how many possible birthdays are there in the second slot?
+(c)  Continuing in this way, how many possible collections are possible where there is no match?
+(d)  Using (c), find the probability there is no match.
+(e)  Find the probability that there is at least one matching birthday.
+
+
+# Chapter 3:  TECHNOLOGY ACTIVITY:  How many defectives?
+
+Suppose that a company manufactures a special type of electronic component to be installed in automobiles.  The quality of the components is very important to the company.  Indeed, of all of the components that will be produced this year, the company would like only a small proportion of them to be defective.
+
+The components are shipped in boxes of four.  Periodically, to ensure that the components are of high quality, a worker opens a box, chooses one component at random, and performs a thorough inspection.  This inspection is expensive and time-consuming, so it is not cost-effective to inspect more than one component from the box.
+
+Initially, the worker believes, based on past experience, that there is a 60% chance of no defectives in the box and if there any defectives, it is equally likely to be 1, 2, 3, or 4 defectives.   On a given day, suppose that the worker opens a box, chooses a component and finds it to have no defects.   Can the worker make an intelligent guess at the total number of defectives in the box?  
+
+We’ll simulate this process using R and answer the above question by the use of Bayes’ rule.
+
+There are five possible models -- either the box has 0, 1, 2, 3, or 4 defectives.  One simulates this process by 
+
+- choosing a model (type of box) at random where the probabilities are given by the "past experience" prior
+
+- simulating the process of inspecting one part from the box and seeing if it defective
+
+The function bayes_simulation() repeats this 10,000 times and constructs a table of the model and outcome (1 means that one found a defective and 0 means that no defective was found).
+
+```
+bayes_simulation <- function(iter = 10000){
+   model <- c(0, 1, 2, 3, 4)
+   prior <- c(0.6, 0.1, 0.1, 0.1, 0.1)
+   like <- c(1, 3/4, 2/4, 1/4, 0)
+   sim_model <- sample(1:5, size = iter,
+                       prob = prior,
+                       replace = TRUE)
+   outcome <- rbinom(iter, size = 1,
+                     prob = like[sim_model])
+   table(model[sim_model], outcome)
+}
+bayes_simulation()
+```
+
+(a)  Find the probability that there is actually one defective in the box and an acceptable item is chosen.
+
+(b)  Find the probability an acceptable item is chosen.
+
+(c)  If you find an acceptable item, find the probability there are no defectives in the box.
+
+(d)  Assuming you find an acceptable item, find the probability of exactly 0, 1, 2, 3, and 4 defectives in the box from the  output.  
+
+(e)  After finding an acceptable part, what is the most likely number of defectives in the box?
+
+# Chapter 4:  TECHNOLOGY ACTIVITY:  Collecting balls
+
+(Change to variations of the collector's problem?)
+
+You sample from a bag with an equal number of “1”, “2”, and “3” balls.  But you continue sampling until you get balls of all three types.  Let Y denote the number of selections.   approximate the probability distribution of Y.  
+  
+From the output, find 
+
+(a) the most likely value of Y
+(b)  the probability that it takes you at most 6 balls to choose balls of all three types
+(c) the mean of Y.
+
+
+# Chapter 4:  TECHNOLOGY ACTIVITY:  Playing roulette
+
+You have decided to take on a new job.  You're going to make money (you hope) playing roulette full-time in Reno.  Each day next year, you will play the roulette wheel 20 times, betting $5 each game.  You will do this all 365 days and keep track of your winnings (or losing) each day.
+
+To learn about roulette and play on-line, go to the web site www.roulette.com.
+
+1.  First, you have to decide what numbers you are going to bet on.  The table below gives some possible bets. 
+
+Type of Bet | Description | Payoff Odds | 
+------- | --------| -------|
+Straight Bet | Bet on one number | 35 to 1
+Split Bet | Bet on 2 consecutive numbers | 17 to 1
+Trio Bet | Bet on 3 consecutive numbers | 11 to 1
+Corner Bet | Bet on 4 consecutive numbers | 8 to 1
+Five-Number Bet | Bet on 5 consecutive numbers | 6 to 1
+Six-Number Bet | Bet on 6 consecutive numbers | 5 to 1
+Dozens Bet | Bet on either 1-12, 13-24, or 25-36 | 2 to 1
+High or Low | Bet on low numbers (1-18), or high numbers (19-36) | 1 to 1
+
+
+Write down the consecutive numbers you plan to always bet on and the payoff (remember you are betting \$5 each time and if you win, you also keep your \$5 bet)
+
+
+- Numbers: ________________________
+- Payoff (amount you win): _________________________
+
+2.  In R, define a new data frame with a variable slot that contains the numbers 0, 0, 1, 2, 3, …, 36.  These values represents the 38 different outcomes of the roulette wheel.
+
+```
+df <- data.frame(slot = c(0, 0, 0:36))
+```
+
+
+3.  Next, define a new variable in the data frame called payoff defined in terms of the slot outcome.  For example, if you decide to bet on numbers 5, 6, 7 (a trio bet that pays off at 11 to 1), you would define payoff to be  11 * 5+5 = 60 if the slot value is 5, 6, 7, and 0 otherwise.
+
+```
+df$payoff <- ifelse(df$slot %in% c(5, 6, 7), 60, 0)
+df
+```
+
+
+4.  To represent your 20 plays on a single day, take a Sample of size 20 with replacement from the rows of this data frame. Write down the results of these 20 games.
+
+```
+library(dplyr)
+sample_n(df, size = 20, replace = TRUE)
+```
+
+
+
+5.  Next, let’s define a measure that computes your total winnings for the day.  
+
+```
+sample_n(df, size = 20, replace = TRUE) %>% 
+  summarize(Total_Winnings = sum(payoff))
+```
+
+
+6.  You have computed your payoff for a single day.  To play for 365 days (every day next year)
+
+
+```
+one_day <- function(){
+  sample_n(df, size = 20, replace = TRUE) %>% 
+  summarize(Total_Winnings = sum(payoff))
+}
+daily_winnings <- replicate(365, one_day())
+```
+
+
+7.  The variable daily_winnings contains your winnings for each day next year.
+
+(a)  Construct a histogram of your winnings.  From this histogram, write a few sentences about this distribution of winnings (what was an average winning, what were your best and worst days, etc).
+
+(b)  Construct a summary table that lists all of the possible winnings and how often each winnings happened.  Fill in the table below. (You find probabilities by dividing each count by the total count.)
+
+
+(c)  How did you do for the year?  Did you actually win money?  If the answer is “no”, how much money did you lose, on average, each day?
+8.  Repeat all of the above work using a different bet.  Compare the two bets – would you prefer one bet?  Why?
+
+
+# Chapter 4:  ACTIVITY:  How many keys?
+
+It is a dark and stormy night and you are trying to open the door of your apartment.  On your key ring, you have 6 keys, 2 of which will open the door and 4 that won’t work.  Since it is dark, you randomly select keys (without replacement) until you find a key that will work.
+
+(a)  If B represents trying a bad key and G represents trying a good key, list all of the possible outcomes of this experiment.  (There are five possible outcomes.)
+
+(b)  Find the probability of each outcome (use the multiplication rule and conditional probability).  Compute each probability to the nearest hundredth.  
+
+(c)  If X = number of keys that you need to try before opening the door, find the probability distribution for X.  Put your answer in the table to the right.
+
+(d)  Simulate this experiment using R  
+
+The following code simulates this experiment one time.
+
+- the variable keys contains the good and bad keys
+- one mixes up the order of the keys by the sample() function
+- one then finds the location of the first occurrence of "good" in the mixed key vector
+
+```
+keys <- c("good", "good", "bad", "bad", "bad", "bad")
+mixed_keys <- sample(keys)
+min(which(mixed_keys == "good"))
+```
+ By repeating this simulation many times, find the probability distribution for X and compare to the exact answers in part (c).
+
+
+# Chapter 4:  ACTIVITY:  Investing money:  comparing safe and risky investments
+
+Suppose you have \$1000 and wish to invest your money.  There are three different investments (called YELLOW, RED, WHITE) that you can make.  We describe each investment in terms of the percentage return R in one year – if you start with \$1000, the value of your money after one year is $1000 (1+R/100).  So, for example, if your percentage return is R = +10 %, the value of \$1000 after one year will be $1000 (1 + 10/100) = \$1100.  If your return is –20 %, the value of $1000 will be \$1000 (1 – 20/100) = $800.
+Each of the investments is a probability distribution for R.  The mean and standard deviation of each probability distribution is also shown.   Note that the average  returns of YELLOW, RED, and WHITE are 0 %, 71%, and 7.5 %, respectively, and the standard deviations of the returns are quite different.
+
+Yellow | Die | | Red | Die | | White | Die 
+--- | ---- | ---- | --- | --- | -- | -- | --
+R | Probability | | R | Probability | | R | Probability
+--- | ---- | ---- | --- | --- | -- | -- | --
+-10% | 1/6 | | -94% | 1/6 || -20% | 1/6
+0 | 1/6 || -80% | 1/6 || -10% | 1/6
+0 | 1/6 || 0 | 1/6 || -5% | 1/6
+0 | 1/6 || +200% | 1/6 || +10% | 1/6
+0 | 1/6 || +200% | 1/6 || +20% | 1/6
++10% | 1/6 || +200% | 1/6 || +40% | 1/6
+--- | ---- | ---- | --- | --- | -- | -- | --
+**Mean** | 0% || **Mean** | 71% || **Mean** | 7.5%
+**SD** | 6% || **SD** | 132% | | **SD** | 20%
+
+
+
+1.  Verify the computation of the mean and standard deviation for one of the investments.
+
+2.  Suppose you want to follow a single investment strategy for 20 years.  Which would you prefer?  Explain.
+
+3.  Now we will simulate trying out all investment strategies for 20 years.  Work in pairs, where one person is the dice roller and rolls the yellow, red, and white dice.  (The colors of your dice might be different depending on the availability of dice colors from your instructor.)  The second person records the value multipliers in the below table.  When you are finished entering in the value multipliers for all 20 years, then compute the investment values.
+
+When we are done, we will collect the results of the investments after 20 years.
+
+Value multipliers for Dice Simulation
+
+OUTCOME	|YELLOW |	RED |	WHITE
+-- | -- | --- | ---
+1	|0.9|	0.06|	0.8
+2	|1	|0.2|	0.9
+3	|1	|1|	1.05
+4	|1	|3|	1.1
+5	|1	|3|	1.2
+6	|1.1|	3|	1.4
+
+
+4.  For each investment type (Yellow, White, and Red), graph the investment values.  Describe each distribution of values, including statements about shape, average, and spread.
+
+5.  Based on your work, what is the best investment?  Explain.
+
+6.  If you were providing advice to a young couple, what investment type would you recommend?  Why? 
+
+# Chapter 4:  ACTIVITY:  Coin flipping:  Is it Real or Fake?
+
+1.  (Fake coin tossing.)  Pretend to flip a coin 200 times – put your results (H or T for each toss) in the boxes below.
+
+
+2.  (Real coin tossing)  Now flip a quarter 200 times – put your results (H or T) in the boxes below.
+
+
+3.  For a given sequence of coin tosses, we define a run as a consecutive sequence of heads or tails.  So for example, if we observe the sequence 
+
+TTHHTHHHTTTTTHHHTTT
+
+we observe a run of two tails, a run of two heads, a run of one tail, a run of three heads, and so on.  Here the length of the longest run is 5, since the longest run is TTTTT and the length of this run is 5.  We define the number of switches as the number of changes from H to T, or from T to H.  I count a total number of six switches in the above sequence.
+
+For each row of 20 tosses in the above two tables, compute X = the number of heads, Y = the length of the longest run of heads or tails, Z = the number of switches.   
+
+4.  Collect the values of X, Y, and Z from all students in the class for the fake coin flips and the real coin flips.  Place the data in the boxes below
+
+
+5.  Compare the number of heads for the fake coin flips and the real coin flips by constructing parallel dotplots.  By looking at the two histograms and calculating suitable summary statistics, explain how the numbers of heads for the real coins look different from the number of heads for the fake coins.
+
+6.  Do the same comparison using the longest run variable.  Which dataset tends to have “long” runs – the fake coins or the real coins?
+
+7.  Repeat the comparison using the number of switches variable.  Do you notice any differences between the histogram for the number of switches for the real coins and the number of switches for the fake coins?
+
+
+# Chapter 4:  ACTIVITY:  Is a professional athlete streaky?
+
+Sports fans are often interested in streaky performances of athletes during a game.  For example, the following table gives the results of 40 shots taken by Kobe Bryant (basketball player who plays for the Lakers) during a 2002 professional basketball game.
+
+
+ALL OF KOBE BRYANT SHOTS for Lakers 96, Warriors 89
+11/15/2002 STAPLES Center, Los Angeles, CA
+      
+
+
+1.  For Kobe’s data, compute the length of the longest run of makes or misses.
+2.  Do you think this value is unusually small or large?  Why?
+3.  One way of deciding if Kobe’s longest run of makes or misses is unusual is to compare this value with the longest run of heads or tails in 40 flips of a fair coin. (We use a fair coin since Kobe’s probability of making a particular shot is approximately .5.)  Below we have simulated 20 sequences of forty coin flips.  For each sequence, compute Y = the longest run of heads or tails and record this value on the right.
+
+									     
+HTHTHHHTTTTTHHTHTHTTHHHTTTHTHTTHHTTHTTTH
+
+TTHTHHTTTTTTTHTHHTHTTHTHHTHTTHTTTTHHHTHT
+
+TTHHTHHTHTHHTHTHTTTHTTTHHHHTHHHHHTHTHTTH
+
+THHTTHHHHTTTTHHTTTTHHTTTTHHTHTHHHHHTHTHH
+
+HHTTTTHHHHHHTHTHHHTHTHHHTTHHTTHHHHTTHHTT
+
+THTHHHTTHHTTTTTTHHHHHHTHHTHTHTTHTHTHHHHH
+
+HHHHHTHHHHTTTHHTHTHTHHTHTTHHHHTTHTHTHHTT
+
+HTHHTTTHHTTTHTTTHTHHHHTTHTHTHTTHHTTHTTHH
+
+TTHHHHHHHTTHHTTTTTHHTHHTHHHTTHHTHTTHHHHT
+
+HTHTTTTHTHTTHTHTHTHTTHHHTHTTTHHHHHHTTTTT
+
+HTTTTTHTHHTTTHTHHHHHHHHHTHHTTTHTHTTTHHTH
+
+TTHHHTHTHHHTHHHTHTHHHTHHTTTHHHHHHTTTTTHT
+
+THHTTHTHTHHTHHHTHHHTTHTTHTTTHTTHTTHHHTHH
+
+TTTTHHHHTTHTTTHTHTHTHTTTHTTHTTHTTHTTHTTH
+
+THHHTHTTTTHTTTTTTHHHHHHTHTTHTHHHHHTTTHTH
+
+THHHTTTHHTHHHTHTHTTHHHHHHHTTHTHTHHHHHTTH
+
+HHTHHTTTTHHHHTTHTTTTHHHHHTTTHHTHHTHHHHHT
+
+THHTTTTTTHHHTTHTTHHHTTTHHHTHTTTHTTHTHHTH
+
+THHTTTHTTHTTHHTHHTTTTHHHHTTHTTTTHHHTTHHT
+
+ HTTTHHTHTTTTTHTHHHTHTHTTTHTHHTTTHTTHTTTH
+
+4.  Construct a dotplot of the 20 values of the longest run Y.  Indicate the length of Kobe’s longest run by a vertical line placed on the dotplot.  Based on this graph, would you say that Kobe’s longest run is unusual relative to the distribution of the longest run for 40 coin flips?  Explain.
+
+
+
+
+
+# Chapter 4:  ACTIVITY:  Graphing binomial and negative binomial experiments
+
+Suppose a basketball player makes a free throw shot with probability 0.7.  We can simulate this shot using a ten-sided die – if the die roll is between 1 and 7, she makes the shot; otherwise she misses the shot. (If a ten-sided die is not available, then a table of random digits can be used.)
+
+Using the die, simulate the shooting of 10 free throws for four games.  Record your data on the graph.  Start at the (0, 0) point (where there is a big dot).  If the player makes the shot, draw a line one unit to the right; if she misses, draw a line one unit up.  When you are done shooting 10 shots, your line should be on the dark diagonal line.
+
+1.  Record the number of makes (successes) for each game – put your answers in the blanks.
+2.  Collect the number of makes from all students in.  Construct a suitable graph of these data.
+3.   What is the most likely number of successes during a game of 10 shots?
+4.  Find the probability she makes at least half her shots.
+5.  Find the probability she makes all of her shots.
+6.  Suppose that the shooter continues to shoot free throws until she misses three shots.   Use this same diagram to record the results of the individual shots until the experiment is completed.  For each experiment, record Y = the total shots taken.
+
+7.  Collect the number of makes from all students in.  Construct a suitable graph of these data.
+8.  What is the most likely number of shots taken?
+9.  What is the probability the woman will take at least 8 shots?
+
+
+# Chapter 5:  TECHNOLOGY ACTIVITY:  Waiting for the shuttle 
+
+Suppose you commute to school.  You park in commuter parking lot and wait for the shuttle bus to take you to campus.  Your first class is probability and statistics at 11:30.  This is your favorite class (I hope) and you certainly don't want to be late!  (Your instructor gets really mad when students are late.)  In any event, you get to the shuttle bus wait area at 11:10.  If the bus doesn't arrive by 11:20, you will be late to class.  (Your heart beats fast just with the thought of being late.)
+
+From past experience, you know that the time X (in minutes) that you wait for the shuttle bus has a uniform distribution from 0 to 15.  That is, the density function for X has the form
+
+f(x) = 1/15  ,  0 < x < 15.
+
+This density looks like the graph below
+
+What we will do on R is to simulate the random times you wait for the bus on Monday, Wednesday, and Friday.
+
+```{r}
+mon_wait <- runif(1000, 0, 15)
+wed_wait <- runif(1000, 0, 15)
+fri_wait <- runif(1000, 0, 15)
+avg_wait <- (mon_wait + wed_wait + fri_wait) / 3
+max_wait <- pmax(mon_wait, wed_wait, fri_wait)
+```
+
+
+HERE ARE THE QUESTIONS TO ANSWER:
+
+4.  Construct histograms for each of the three measures ("mon_wait", "avg_wait" and "max_wait").  Comment on the shape of each of the histograms.
+
+5. Using R, what is the average (mean) time that you wait for the bus on Monday?
+
+6. Find the expected value of X (not using R) --compare this answer with the answer to question 5.
+
+7.  Using R, find the standard deviation of the Monday wait time.  
+
+
+# Chapter 5:  TECHNOLOGY ACTIVITY:  A test with a bimodal distribution
+
+Suppose that grades on a test are well-described by the probability density
+
+
+Use a computer program (such as Fathom) or a calculator to answer the following questions.
+
+1.  Is really a probability density?  If not, can we fix it so it is a legitimate density?
+2.  If X represents a score on the test, find the probability a student scores below 60.
+3.  Find the probability X is between 70 and 90.
+4.  Find the median grade on the test.
+5.  Find F(80).
+
+# Chapter 5:  TECHNOLOGY ACTIVITY:  Sampling heights
+
+In this lab, we explore a dataset that contains the heights (in inches) of all the women who played in the WNBA (professional basketball) league in 2000.   We’ll take repeated samples of size 25 from this dataset.  For each sample, we’ll compute the mean, and look at the distribution of sample means.  
+
+1.  First load the dataset of heights wba_heights.txt into Fathom.
+
+2.  Construct a dotplot of the heights.  Write three sentences about this dataset, commenting on the general shape of the distribution, a typical height, and any unusual features that you see.
+
+3.  Find the names and heights of the tallest and shortest players in the WNBA.  (An easy way to identify these players is by selecting the Height attribute, and Selecting Sort Ascending from the Data menu.)
+
+4.  Find the mean and standard deviation of the heights.  We’ll denote these values by μ and σ, respectively.
+
+			μ  =  			σ = 
+
+5.  Take a sample of size 25 without replacement from this dataset.  (Select the Collection, select Sample Cases from the Analyze menu, inspect the Sample Collection – turn off animation, make sure the With Replacement box is not checked, and sample 25 cases.)
+
+6.  Define a Measure from this Sample Collection (this will be the mean of the sample).  Call the measure “sample_mean” – the formula for this measure is mean(height).
+
+Write down the value of the sample mean for one sample.  ___________
+
+7.  Now let’s repeat this process (taking a sample of 25 and computing the sample mean) 1000 times.  Select the Sample Collection and select Collect Measures from the Analyze menu.
+
+For the remainder of this assignment, we’ll focus on the Measures Collection.  This collection contains the sample means from the 1000 samples you took from the WNBA heights.
+
+8.  Construct a histogram of the sample means.  On the number line below, sketch the histogram that you see.
+
+
+
++-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+
+66   67    68    69    70    71    72    73    74    75    76 (inches)
+
+9.  Find the mean and standard deviation of the 1000 sample means.
+
+μ (sample means) = 			σ (sample means) =
+
+10.  Find the probability (on Fathom) that the sample mean is larger than 73 inches.
+
+11.   Find the mean and standard deviation of the distribution of sample means. [Check your answer by comparing with your answer in 9.]
+
+12.  Using the Central Limit Theorem, find the probability that you will find a sample mean larger than 73. [Check your answer by comparing with your answer to 10.]
+
+13.  For a normal curve with mean μ and standard deviation σ, 95% of the probability falls in the interval (μ – 2 σ, μ + 2 σ).  Find an interval where you expect 95% of the sample means to fall.
+
+
+
+# Chapter 5:  TECHNOLOGY ACTIVITY:  Rolling biased dice
+
+1.  First construct your biased dice.  In the boxes below, put whole number weights in the boxes so that two numbers are more likely to be rolled than the remaining numbers.  (For example, if you assign the weights 5, 1, 1, 1, 1, 5 to the numbers, this means that 1 and 6 are most likely to be rolled.)  Also compute the probabilities of each roll.
+
+Roll | 1 | 2 | 3 | 4 | 5 | 6
+-- | -- | -- | --|--|--
+Weight | | | | |
+Probability | | | | |
+
+2.  If X denotes the die roll, use the above probability distribution to find the mean and standard deviation of X.
+
+To roll 5 of your biased dice, open the Fathom program rolling_biased_dice.ftm 
+
+Here are the steps for rolling your biased dice on Fathom:
+
+Step 1:  To set up your biased dice, you put the numbers 1, 2, 3, 4, 5, 6 in Collection 1 where the number of 1’s, 2’s, etc. correspond to your weights.  (For example, if my weights are 5, 1, 1, 1, 1, 5, then I would place five 1’s, one 2, one 3, one 4, one 5, and five 6’s in Collection 1.)
+
+Step 2:  Set n in the Fathom Slider to be 5 since you’ll be rolling five dice.
+
+Step 3:  To roll your five dice 500 times, push the “Collect More Measures” button.  Each time five dice are rolled, Fathom will find the sum of the rolls, and the Measures Collection will contain 500 values of the sum of rolls.
+
+3.  Look at the histogram of the sum of rolls.  Describe this sampling distribution, including comments about its shape, average value, and spread.
+
+4.  Let S denote the sum of your five rolls.  Using Fathom, find
+
+(a)  E(S) and SD(S)
+
+(b)  
+
+(c)  
+
+5.  Your five rolls can be considered to be a random sample of size n = 5 from your population defined by the probability distribution of X.  By the Central Limit Theorem, the sum of the five rolls can be approximated by a normal curve with mean and standard deviation.  Using this approximation, compute parts (b) and (c) of part 3.  Compare your answers to the Fathom simulation answers (they should be close).
+
+6.  The accuracy of the Central Limit Theorem approximation should improve for larger values of the sample size n.  To check this, rerun your simulation for n = 10 rolls of your biased dice.  Compute the probability two ways (using the Fathom output and the normal approximation) and comment on the accuracy of the approximation.
+
+# Chapter 6:  TECHNOLOGY ACTIVITY:  Rolling two dice
+
+Suppose you roll two fair dice and you keep track of two measures:  the sum of the rolls and the maximum of the two rolls.  We will use Fathom to simulate this process 1000 times.
+
+1.  Open a new Collection and Data Table.  Define an attribute called “Die” and put the numbers 1, 2, 3, 4, 5, 6 in the table.
+
+2.  Take a Sample of size 2 with replacement from your collection.  This sample represents the rolls of the two dice.  (It may help to turn off the animation of this sampling.)
+
+3.  Define two Measures from your sample:
+sum_of_dice = sum(die)
+max_roll = max(die)
+
+4.  Now you want to repeat rolling 2 dice 1000 times.  Collect Measures from your Sample of Collection.  When you inspect the Collect Measures collection, you want to collect 1000 measures and, to speed things up, turn off the animation.
+
+5.  After you do your simulation, construct a two-way frequency table of sum_of_dice and max_rolls like the one shown to the right.  When you drag the attribute names to the table, make sure the Shift key is depressed.
+
+6.  Using this table, find the following probabilities:
+
+(a)  P(sum = 7 and max roll = 6)
+
+(b)  P(sum = 7)
+
+(c)  P(sum = 7 | max roll = 6)
+
+(d)  P(max roll = 6 | sum = 7)
+
+ (e)  Suppose you are given the information that the maximum roll is 5.  What is the most likely value of the sum?  What is its probability?
+
+
+
+
+
