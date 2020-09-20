@@ -1,4 +1,4 @@
-THE ERRATA LIST - 6/30/2020
+THE ERRATA LIST - 9/20/2020
 
 1.  Page 19, line 17.  Should be
 
@@ -49,27 +49,31 @@ line 8, it should be "test_function(rnorm(n, mu, sigma))"
 
 20.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
 
-21.  Page 393, Exercise 1, line 1:  n_j should be n_i.
+21.  Page 374, equation (10.12).  Should be
 
-22.  Page 393, Exercise 1, line 2: \bar{y}_j should be \bar{y}_i.
+Y_ij | mu_j, sigma distributed Normal(mu_j, sigma). (Remove j subscript from sigma)
 
-23.  Page 394, Exercise 2 first line of the model: should be Normal(\mu_i, \sigma / \sqrt{n_i}), i = 1, …, 6 
+22.  Page 393, Exercise 1, line 1:  n_j should be n_i.
 
-24.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
+23.  Page 393, Exercise 1, line 2: \bar{y}_j should be \bar{y}_i.
 
-25.  Page 429, line 11 from bottom.  Should be "measure of the linear"
+24.  Page 394, Exercise 2 first line of the model: should be Normal(\mu_i, \sigma / \sqrt{n_i}), i = 1, …, 6 
 
-26.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+25.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
 
-27.  Page 439, Exercise 4(c): should be “From the interval found in part (b)”.
+26.  Page 429, line 11 from bottom.  Should be "measure of the linear"
 
-28.  Page 452, line 6.  Replace "the the" with "that the".
+27.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
 
-29.  Page 465.  Line 19.  Should be "the quadratic model is best"
+28.  Page 439, Exercise 4(c): should be “From the interval found in part (b)”.
 
-30.  Page 468, line 13.  Replace "the the" with "that the".
+29.  Page 452, line 6.  Replace "the the" with "that the".
 
-31.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+30.  Page 465.  Line 19.  Should be "the quadratic model is best"
+
+31.  Page 468, line 13.  Replace "the the" with "that the".
+
+32.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)
 p0 <- 0.40; p1 <- 0.70
