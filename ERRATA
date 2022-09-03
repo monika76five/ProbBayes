@@ -1,4 +1,4 @@
-THE ERRATA LIST - 9/20/2020
+THE ERRATA LIST - 9/3/2022
 
 1.  Page 19, line 17.  Should be
 
@@ -49,31 +49,65 @@ line 8, it should be "test_function(rnorm(n, mu, sigma))"
 
 20.  Page 354, Exercise 2.  The third row of the transition matrix P should be [0 .2, .6, .2 0]
 
-21.  Page 374, equation (10.12).  Should be
+21.  Section 10.1.1, 2nd paragraph.  It might be explained that as the number of players decreases relative to the sample size, the data fit a Normal distribution less closely, and there is increased improvement of inference from segmenting the analysis.
+
+22.  Section 10.1.2, 3rd paragraph.  SAT scores are not continuous (there are finitely many valid scores), but it is reasonable to model them in that way because they are linearly ordered.
+
+23.  Section 10.1.5, 2nd paragraph.  $ _5$ is missing \mu.
+
+24.  Section 10.1.5, 2nd paragraph.  "this type of "similarity" prior ] allows" => "this type of "similarity" prior allows"
+
+25.  Section 10.2.1, 2nd paragraph.  "where a rating is is for a particular" => "where a rating is for a particular"
+
+26.  Section 10.2.1, 3rd paragraph.  Fix and standardize quotation marks around movie names.
+
+27.  Section 10.2.2, 2nd paragraph.  Again, set of valid ratings is not likely continuous.
+
+28.  Above Equation 10.5.  The bullet point is not properly formed.
+
+29.  Section 10.2.2, 9th paragraph.  "complete the model" => "complete the first-stage model".
+
+30.  Section 10.2.2, 11th paragraph.  Remove the space between \sigma and the period.
+
+31.  Equations 10.10, 10.11.  The graphical representation could be expanded to include the four additional variables.  This would require separating \mu and \tau.
+
+32.  Page 374, equation (10.12).  Should be
 
 Y_ij | mu_j, sigma distributed Normal(mu_j, sigma). (Remove j subscript from sigma)
 
-22.  Page 393, Exercise 1, line 1:  n_j should be n_i.
+33.  Describe the model by a script, 4th paragraph.  Fix code formatting.
 
-23.  Page 393, Exercise 1, line 2: \bar{y}_j should be \bar{y}_i.
+34.  MCMC Diagnostics and summarization, 2nd paagraph.  Fix code formatting around print() and remove closing brace.
 
-24.  Page 394, Exercise 2 first line of the model: should be Normal(\mu_i, \sigma / \sqrt{n_i}), i = 1, …, 6 
+35.  Sources of variability, 1st paragraph.  "means \mu_j 's of all groups" => "means \mu_j of all groups"  Separately, "<var>'s" => <var>s throughout the book, since apostrophes indicate possessive.  
 
-25.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
+36.  Section 10.3.2, "in Table" => "in Table 10.2.  The table is below its caption.
 
-26.  Page 429, line 11 from bottom.  Should be "measure of the linear"
+37.  Equations 10.19 and 10.22.  Leading bullet points should include i=1,...,13?
 
-27.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+38.  Figure 10.5.  Is there concern of the lag not dissipating as in prior examples?
 
-28.  Page 439, Exercise 4(c): should be “From the interval found in part (b)”.
+39.  Page 393, Exercise 1, line 1:  n_j should be n_i.
 
-29.  Page 452, line 6.  Replace "the the" with "that the".
+40.  Page 393, Exercise 1, line 2: \bar{y}_j should be \bar{y}_i.
 
-30.  Page 465.  Line 19.  Should be "the quadratic model is best"
+41.  Page 394, Exercise 2 first line of the model: should be Normal(\mu_i, \sigma / \sqrt{n_i}), i = 1, …, 6 
 
-31.  Page 468, line 13.  Replace "the the" with "that the".
+42.  Page 401, Exercise 12, part (a).  Should be "Suppose the 10 collects times are observed at 5 different locations"
 
-32.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
+43.  Page 429, line 11 from bottom.  Should be "measure of the linear"
+
+44.  Page 436.  Add before JAGS script:  The prior standard deviations of beta0 and beta1 are 20 and 15 and so the corresponding precisions are 1 / 20 ^ 2 and 1 / 15 ^ 2.  These precision values (not the standard deviations) should be used in the JAGS script.  
+
+45.  Page 439, Exercise 4(c): should be “From the interval found in part (b)”.
+
+46.  Page 452, line 6.  Replace "the the" with "that the".
+
+47.  Page 465.  Line 19.  Should be "the quadratic model is best"
+
+48.  Page 468, line 13.  Replace "the the" with "that the".
+
+49.  Page 522.  In the R code, the variables m and n should be switched.  Here is the correct R script.
 
 set.seed(123)
 p0 <- 0.40; p1 <- 0.70
